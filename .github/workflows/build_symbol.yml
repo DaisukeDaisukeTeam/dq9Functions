@@ -1,0 +1,67 @@
+name: build_symbol
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        path: 'dq9Functions'
+    - uses: actions/checkout@v3
+      with:
+        repository: 'UsernameFodder/pmdsky-debug'
+        path: 'pmdsky-debug'
+    - name: Build
+      working-directory: pmdsky-debug
+      run: cargo build --release
+    - name: install
+      working-directory: pmdsky-debug
+      run: cargo install --path .
+    - name: Run build
+      working-directory: dq9Functions
+      run: |
+        resymgen gen --sort --output-dir output/battle symbols/arm9_battle.yml
+        resymgen gen --sort --output-dir output/field symbols/arm9_field.yml
+        resymgen gen --sort --output-dir output/ram symbols/arm9_ram.yml
+    - name: zipping
+      working-directory: dq9Functions
+      run: |
+        find output -type f -name "*_jp*" -exec zip symbol_jp.zip {} +
+        find output -type f -name "*_eu*" -exec zip symbol_eu.zip {} +
+    - name: Update latest branch release
+      uses: ncipollo/release-action@v1.13.0
+      with:
+          artifacts: |
+            ${{ github.workspace }}/dq9Functions/symbol_jp.zip
+            ${{ github.workspace }}/dq9Functions/symbol_eu.zip
+          makeLatest: ${{ github.ref_name == github.event.repository.default_branch }}
+          name: symbol - Latest (Build ${{ github.run_number }})
+          tag: symbol-latest
+          commit: ${{ github.sha }}
+          allowUpdates: true
+          removeArtifacts: true
+          prerelease: ${{ endsWith(github.ref_name, '-preview') }}
+
+    - name: Publish unique release
+      uses: ncipollo/release-action@v1.13.0
+      with:
+          artifacts: |
+            ${{ github.workspace }}/dq9Functions/symbol_jp.zip
+            ${{ github.workspace }}/dq9Functions/symbol_eu.zip
+          makeLatest: false
+          name: symbol (Build ${{ github.run_number }})
+          tag: symbol-build-${{ github.run_number }}
+          commit: ${{ github.sha }}
+          prerelease: ${{ endsWith(github.ref_name, '-preview') }}
+    

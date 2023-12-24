@@ -1,0 +1,314 @@
+main:
+  versions:
+    - jp
+    - eu
+  address:
+    jp: 0x2000000
+    eu: 0x2000000
+  length:
+    v1: 0xF08000
+    v2: 0xF08000
+  description: main memory
+  functions:
+    - name: memcpy
+      address:
+        jp: 0x200195C
+      description: |-
+        memcpy
+        
+        r0: to
+        r1: from
+        r2: length
+    - name: FloatSubtraction
+      address:
+        jp: 0x200B880
+      description: |-
+        add between IEEE 754 floating-point numbers
+        
+        r0: IEEE 754 floating-point numbers
+        r1: IEEE 754 floating-point numbers
+        return: (float) r0 + r1
+    - name: FloatGreaterThan
+      address:
+        jp: 0x200BE2C
+      description: |-
+        Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, and sets CPSR at the same time
+        
+        r0: IEEE 754 floating-point number
+        r1: IEEE 754 floating-point number
+        return: r0 > r1
+    - name: FloatGreaterThanOrEqualTo
+      address:
+        jp: 0x200BE88
+      description: |-
+        Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, and sets CPSR at the same time
+        
+        r0: IEEE 754 floating-point number
+        r1: IEEE 754 floating-point number
+        return: r0 >= r1
+    - name: FloatLessThanOrEqualTo
+      address:
+        jp: 0x200BEE4
+      description: |-
+        Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, and sets CPSR at the same time
+        
+        r0: IEEE 754 floating-point number
+        r1: IEEE 754 floating-point number
+        return: r0 <= r1
+    - name: FloatLesshan
+      address:
+        jp: 0x200BF4C
+      description: |-
+        Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, and sets CPSR at the same time
+        
+        r0: IEEE 754 floating-point number
+        r1: IEEE 754 floating-point number
+        return: r0 < r1
+    - name: FloatEqualTo
+      address:
+        jp: 0x200BFA8
+      description: |-
+        Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, It looks like there is a NAN check or an INF check
+        
+        r0: IEEE 754 floating-point number
+        r1: IEEE 754 floating-point number
+        return: r0 == r1
+    - name: FloatNotEqualTo
+      address:
+        jp: 0x200C010
+      description: |-
+        Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, It looks like there is a NAN check or an INF check
+        
+        r0: IEEE 754 floating-point number
+        r1: IEEE 754 floating-point number
+        return: r0 != r1
+    - name: FloatDivision
+      address:
+        jp: 0x200C084
+      description: |-
+        Division between IEEE 754 floating-point numbers
+        
+        r0: IEEE 754 floating-point numbers
+        r1: IEEE 754 floating-point numbers
+        return: (float) r0 / r1
+    - name: FloatToInt1
+      address:
+        jp: 0x200C4C0
+      description: |-
+        Converts an IEEE 754 floating-point number to an integer, truncating the decimal places.
+        I have no idea why there are 3 variants
+        
+        r0: IEEE 754 floating-point number
+        return: (int) r0
+    - name: FloatToInt3
+      address:
+        jp: 0x200C4F4
+      description: |-
+        Converts an IEEE 754 floating-point number to an integer, truncating the decimal places.
+        I have no idea why there are 3 variants
+        
+        r0: IEEE 754 floating-point number
+        return: (int) r0
+    - name: FloatToInt2
+      address:
+        jp: 0x200C534
+      description: |-
+        Converts an IEEE 754 floating-point number to an integer, truncating the decimal places.
+        I have no idea why there are 3 variants
+        
+        r0: IEEE 754 floating-point number
+        return: (int) r0
+    - name: IntToFloat
+      address:
+        jp: 0x200C57C
+      description: |-
+        Converts an integer to an IEEE 754 floating-point number
+        
+        r0: int
+        return: (float) r0
+    - name: FloatMultiplication
+      address:
+        jp: 0x200C698
+      description: |-
+        Multiplying IEEE 754 floating-point numbers
+        
+        r0: IEEE 754 floating-point numbers
+        r1: IEEE 754 floating-point numbers
+        return: (float) r0 * r1
+    - name: FloatRoot
+      address:
+        jp: 0x200C878
+      description: |-
+        root the input and returns the result as an IEEE 754 floating-point number
+        
+        r0: IEEE 754 floating-point number
+        return: (float) sqrt(r0)
+    - name: FloatSubtraction
+      address:
+        jp: 0x200C968
+      description: |-
+        Subtraction between IEEE 754 floating-point numbers
+        
+        r0: IEEE 754 floating-point numbers
+        r1: IEEE 754 floating-point numbers
+        return: (float) r0 - r1
+    - name: int32Division1
+      address:
+        jp: 0x200CE08
+        eu: 0x200CF44
+      description: |-
+        r0 returns "r0 / r1" and r1 returns "r0 mod r1".
+        
+        r0: int
+        r1: int
+        return: (double) (((int)(r0 / r1)) << 32) | (r0 mod r1)
+    - name: int16Division2_1
+      address:
+        jp: 0x200D014
+      description: |-
+        I don't know because I haven't verified it, but I think it's probably 16-bit division.
+        r0 returns "r0 / r1" and r1 returns "r0 mod r1".
+        
+        r0: int
+        r1: int
+        return: (double) (((int)(r0 / r1)) << 32) | (r0 mod r1)
+    - name: int16Division2_2
+      address:
+        jp: 0x200D01C
+      description: |-
+        I don't know because I haven't verified it, but I think it's probably 16-bit division.
+        Same as int16Division2_1, but without checking if argument 2 is 0.
+        r0 returns "r0 / r1" and r1 returns "r0 mod r1".
+        
+        r0: int
+        r1: int
+        return: (double) (((int)(r0 / r1)) << 32) | (r0 mod r1)
+    - name: memclear
+      address:
+        jp: 0x200F238
+      description: |-
+        fill with 0
+        
+        r0: addr
+        r1: length
+    - name: AT_Rand
+      address:
+        jp: 0x2031EA8
+      description: |-
+        AT rand function.
+        
+        r0: Maximum value (int)
+        return: [0]-[Maximum value-1]
+    - name: getBTAddress
+      address:
+        jp: 0x207535C
+      description: |-
+        Returns the location of the Hoimi table in memory.
+        It is known that the Hoimi table uses a 64bit LCG algorithm and is stored in 0x02108D20 in JP and 0x02108DDC in EU.
+        
+        return: memory address
+    - name: init_LCG
+      address:
+        jp: 0x20753C4
+      description: "Initialize 64bit LCG. I don't know about the arguments yet"
+    - name: get_lcg_bit2
+      address:
+        jp: 0x2075424
+      description: |-
+        returns [r0+4]
+        
+        r0: BT or CT address
+        return: current raw random value
+    - name: get_lcg_bit1
+      address:
+        jp: 0x2075438
+      description: |-
+        returns [r0]
+        
+        r0: BT or CT address
+        return: current raw random value
+    - name: UpdateLCG
+      address:
+        jp: 0x207544C
+      description: |-
+        Updates the 64bit LCG and returns the upper 32bits of the LCG.
+        Consumes one 64bit LCG
+        
+        r0: BT or CT address
+        return: Upper 32bit of updated 64bit LCG
+    - name: generate_random_until
+      address:
+        jp: 0x2075488
+        eu: 0x207430C
+      description: |-
+        Returns a random number from 0 to the natural number input as the second argument - 1.
+        This is a rand function that is mainly used preferentially in BT, and is also used in CT when branching when the probability is less than a certain value.
+        Consumes one 64bit LCG (in the called function)
+        
+        r0: BT or CT address
+        r1: maximum rand
+        return: Natural number [0]-[maximum rand-1]
+    - name: getFloatRand
+      address:
+        jp: 0x20754D8
+      description: |-
+        Returns an IEEE 754 floating-point number less than 1 that depends on the current random number.
+        (0.555 etc.)
+        Multiplying this by 100 matches the percentage in the Hoimi table (although there is an error.)
+        Consumes one 64bit LCG (in the called function)
+        
+        r0: BT or CT address
+        return: IEEE 754 floating-point number(0.55555 etc)
+    - name: float_rand_range
+      address:
+        jp: 0x2075514
+      description: |-
+        Returns a random number of IEEE 754 floating-points between the IEEE 754 floating-points specified by argument 2 (maximum value) and argument 3 (minimum value).
+        Consumes one 64bit LCG. (in the called function.)
+        
+        CT addr, 0.5, 1.5 = 1.2 etc
+        
+        r0: BT or CT address
+        r1: Maximum IEEE 754 floating-point number
+        r2: Minimum IEEE 754 floating-point number
+        return: IEEE 754 floating-point number(0.55555 etc)
+    - name: range_rand
+      address:
+        jp: 0x2075604
+      description: |-
+        Returns a random number between argument 2 (int) and argument 3 (int)
+        Consumes one 64bit LCG. (in the called function.)
+        
+        r0: BT or CT address
+        r1: Maximum int
+        r2: Minimum int
+        return: [Minimum]-[Maximum] (maybe)
+    - name: float_to_int_by_round
+      address:
+        jp: 0x2075634
+      description: |-
+        Round the 0th digit of the decimal point and convert it into an integer
+        
+        r0: IEEE 754 floating-point number
+        return: (int) (input + 0.5)
+  data:
+    - name: AT_LCG_Location
+      address:
+        jp: 0x20EEE90
+        eu: 0x20EEF30
+      length:
+        jp: 0x4
+        eu: 0x4
+    - name: BT_LCG_location
+      address:
+        jp: 0x2108D20
+        eu: 0x2108DDC
+      length:
+        jp: 0x8
+        eu: 0x8
+    - name: CT_LCG_location
+      address:
+        jp: 0x2385F0C
+      length:
+        jp: 0x8
+        eu: 0x8

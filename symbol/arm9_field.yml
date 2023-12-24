@@ -1,0 +1,44 @@
+main:
+  versions:
+    - jp
+    - eu
+  address:
+    jp: 0x2000000
+    eu: 0x2000000
+  length:
+    jp: 0xF08000
+    eu: 0xF08000
+  description: in field memory
+  functions:
+    - name: ChooseFieldMonsterId
+      address:
+        jp: 0x2075168
+      description: |-
+        Choose which monsters to spawn using AT, using the monster table and probabilities deployed at specific locations in memory.
+        This function only chooses the type of spawning monsters. the conditions under which the monsters are generated are selected by an unknown function.
+        If an ID that cannot be spawned is returned (id not on the table, trap monster, etc.), the spawn will not be performed.
+        
+        arguments are not yet understood
+        r1: 0x20FDB08?
+        return: monsterId,
+    - name: GenerateCompanionByBT
+      address:
+        jp: 0x209CD4C
+        eu: 0x209AFE4
+      description: |-
+        Generate the number of monsters, 2nd group, and 3rd group using BT.
+        
+        r0: jp(0x020FDBCC) table base address
+        r1: 1 Group monsterId
+        r2: Table ID used to determine the type of companion?
+        r3: Table ID used for companion determination and 1G number determination?
+        arg5: jp(0x027E345C), the resulting structure
+        arg6: jp(0x020FDAAC), field information. Used to get the upper limit of monsters.
+  data:
+    - name: AT_LCG_Location
+      address:
+        jp: 0x20EEE90
+        eu: 0x20EEF30
+      length:
+        jp: 0x4
+        eu: 0x4

@@ -9,6 +9,19 @@ I'm not going to do a complete analysis.
 See the issue for instructions on how to import.
 https://github.com/DaisukeDaisukeTeam/dq9Functions/issues/1
 
+## LCG
+Abbreviation for Linear congruential generator.
+It is a random number that is updated using the following formula.
+```
+(seed * constant1) + constant2 mod (2^64 or 2^32)
+```
+https://en.wikipedia.org/wiki/Linear_congruential_generator
+<!--
+Linear congruential generatorの略です。
+次のような式で更新される乱数です
+(seed * 定数1) + 定数2 mod (2^64 or 2^32)
+-->
+
 ## AT
 This is the first random number in the game where the 32-bit LCG algorithm is used. It is used for the following purposes
 - Monster spawn
@@ -71,5 +84,19 @@ ATとBTは同じシード値を共有し、3dsでは初期シードの幅が非�
 - ザオラルの抽選
 - 逃げるの抽選
 - examineコマンドのメッセージ抽選
+次の式で更新されます
+--!>
+
+### CT
+It is the third random number in the game and is used to randomize combat actions.
+An initial seed is generated at the start of each battle and is 28 bits wide, making it difficult to predict.
+
+will be updated with the following expression
+```
+seed(64bit) = ((seed * 0x5d588b656c078965) + 0x269ec3) & 0xFFFFFFFFFFFFFFFF
+```
+<!--
+ゲームの3番目の乱数で、戦闘の行動の乱数に使用されています。
+戦闘開始時に毎回初期シードが生成され、28bitの幅を持つため、予測することは困難です。
 次の式で更新されます
 --!>

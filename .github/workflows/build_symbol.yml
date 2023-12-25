@@ -67,16 +67,17 @@ jobs:
           removeArtifacts: true
           prerelease: ${{ endsWith(github.ref_name, '-preview') }}
 
-    - name: Publish unique release
-      uses: ncipollo/release-action@v1.13.0
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.0.0
       with:
-          artifacts: |
-            ${{ github.workspace }}/dq9Functions/symbol_jpn.zip
-            ${{ github.workspace }}/dq9Functions/symbol_eur.zip
-            ${{ github.workspace }}/dq9Functions/symbol_usa.zip
-          makeLatest: false
-          name: symbol (Build ${{ github.run_number }})
-          tag: symbol-build-${{ github.run_number }}
-          commit: ${{ github.sha }}
-          prerelease: ${{ endsWith(github.ref_name, '-preview') }}
+        path: ${{ github.workspace }}/dq9Functions/symbol_jpn.zip 
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.0.0
+      with:
+        path: ${{ github.workspace }}/dq9Functions/symbol_eur.zip
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.0.0
+      with:
+        path: ${{ github.workspace }}/dq9Functions/symbol_usa.zip
+          
     

@@ -57,7 +57,7 @@ In Japan, it is called a Hoimi table.
 AT and BT share the same seed value, and in 3ds the initial seed is very narrow and the way it advances is predictable and consistent, allowing the initial seed to be identified and tracked
 
 Some of the intended uses are
-- Drawing alchemicals with large alchemical success
+- Lottery for the great alchemical success
 - Recovery on feeds
 - Rewards from the Demon King or Map Boss
 - Lottery for items from the Fountain

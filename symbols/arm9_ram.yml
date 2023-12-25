@@ -19,9 +19,30 @@ main:
         r0: to
         r1: from
         r2: length
-    - name: FloatSubtraction
+    - name: UpdateAT
+      address:
+        jp: 0x2003C30
+        eu: 0x2003D14
+      description: |-
+        Update 32bit LCG which is AT.
+        Many functions mod (divide) this return value to obtain random numbers instead of using the rand function. This is probably a result of function folding due to compile-time optimization.
+        
+        rand = ((rand * 0x41C64E6D) + 0x3039 & 0xFFFFFFFF)
+        
+        return: (int) 0x7fff & [32bit rand] >> 0x10
+    - name: InitAT
+      address:
+        jp: 0x2003C64
+        eu: 0x2003D48
+      description: |-
+        Initialize AT with arguments
+        Set AT to the specified random value. This is probably used for map generation such as treasure maps
+        
+        r0: int rand 2f6f6 etc
+    - name: FloatAdd
       address:
         jp: 0x200B880
+        eu: 0x200B9BC
       description: |-
         add between IEEE 754 floating-point numbers
         
@@ -31,6 +52,7 @@ main:
     - name: FloatGreaterThan
       address:
         jp: 0x200BE2C
+        eu: 0x200BF68
       description: |-
         Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, and sets CPSR at the same time
         
@@ -40,6 +62,7 @@ main:
     - name: FloatGreaterThanOrEqualTo
       address:
         jp: 0x200BE88
+        eu: 0x200BFC4
       description: |-
         Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, and sets CPSR at the same time
         
@@ -49,6 +72,7 @@ main:
     - name: FloatLessThanOrEqualTo
       address:
         jp: 0x200BEE4
+        eu: 0x200C020
       description: |-
         Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, and sets CPSR at the same time
         
@@ -58,6 +82,7 @@ main:
     - name: FloatLesshan
       address:
         jp: 0x200BF4C
+        eu: 0x200C088
       description: |-
         Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, and sets CPSR at the same time
         
@@ -67,6 +92,7 @@ main:
     - name: FloatEqualTo
       address:
         jp: 0x200BFA8
+        eu: 0x200C0E4
       description: |-
         Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, It looks like there is a NAN check or an INF check
         
@@ -76,6 +102,7 @@ main:
     - name: FloatNotEqualTo
       address:
         jp: 0x200C010
+        eu: 0x200C14C
       description: |-
         Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, It looks like there is a NAN check or an INF check
         
@@ -85,6 +112,7 @@ main:
     - name: FloatDivision
       address:
         jp: 0x200C084
+        eu: 0x200C1C0
       description: |-
         Division between IEEE 754 floating-point numbers
         
@@ -94,6 +122,7 @@ main:
     - name: FloatToInt1
       address:
         jp: 0x200C4C0
+        eu: 0x200C5FC
       description: |-
         Converts an IEEE 754 floating-point number to an integer, truncating the decimal places.
         I have no idea why there are 3 variants
@@ -103,6 +132,7 @@ main:
     - name: FloatToInt3
       address:
         jp: 0x200C4F4
+        eu: 0x200C630
       description: |-
         Converts an IEEE 754 floating-point number to an integer, truncating the decimal places.
         I have no idea why there are 3 variants
@@ -112,6 +142,7 @@ main:
     - name: FloatToInt2
       address:
         jp: 0x200C534
+        eu: 0x200C670
       description: |-
         Converts an IEEE 754 floating-point number to an integer, truncating the decimal places.
         I have no idea why there are 3 variants
@@ -121,6 +152,7 @@ main:
     - name: IntToFloat
       address:
         jp: 0x200C57C
+        eu: 0x200C670
       description: |-
         Converts an integer to an IEEE 754 floating-point number
         
@@ -129,6 +161,7 @@ main:
     - name: FloatMultiplication
       address:
         jp: 0x200C698
+        eu: 0x200C7D4
       description: |-
         Multiplying IEEE 754 floating-point numbers
         
@@ -138,6 +171,7 @@ main:
     - name: FloatRoot
       address:
         jp: 0x200C878
+        eu: 0x200C9B4
       description: |-
         root the input and returns the result as an IEEE 754 floating-point number
         
@@ -146,6 +180,7 @@ main:
     - name: FloatSubtraction
       address:
         jp: 0x200C968
+        eu: 0x200CAA4
       description: |-
         Subtraction between IEEE 754 floating-point numbers
         
@@ -165,6 +200,7 @@ main:
     - name: int16Division2_1
       address:
         jp: 0x200D014
+        eu: 0x200D150
       description: |-
         I don't know because I haven't verified it, but I think it's probably 16-bit division.
         r0 returns "r0 / r1" and r1 returns "r0 mod r1".
@@ -175,6 +211,7 @@ main:
     - name: int16Division2_2
       address:
         jp: 0x200D01C
+        eu: 0x200D158
       description: |-
         I don't know because I haven't verified it, but I think it's probably 16-bit division.
         Same as int16Division2_1, but without checking if argument 2 is 0.
@@ -191,9 +228,23 @@ main:
         
         r0: addr
         r1: length
+    - name: InitSeedetc
+      address:
+        jp: 0x200F268
+        eu: 0x200F3A4
+      description: "Initialize AT and BT with this function. I don't know about other processes"
+    - name: InitTavernParty
+      address:
+        jp: 0x20107F8
+        eu: 0x20109AC
+      description: |-
+        While creating the adventure book (4th slime), consume BT to generate the initial members of Ruida's Tavern.
+        I don't know about anything else.
+        It is known that the processing is different between the EU version and the JP version.
     - name: AT_Rand
       address:
         jp: 0x2031EA8
+        eu: 0x2032380
       description: |-
         AT rand function.
         
@@ -202,6 +253,7 @@ main:
     - name: getBTAddress
       address:
         jp: 0x207535C
+        eu: 0x20741E0
       description: |-
         Returns the location of the Hoimi table in memory.
         It is known that the Hoimi table uses a 64bit LCG algorithm and is stored in 0x02108D20 in JP and 0x02108DDC in EU.
@@ -210,6 +262,7 @@ main:
     - name: init_LCG
       address:
         jp: 0x20753C4
+        eu: 0x2074248
       description: "Initialize 64bit LCG. I don't know about the arguments yet"
     - name: get_lcg_bit2
       address:
@@ -230,6 +283,7 @@ main:
     - name: UpdateLCG
       address:
         jp: 0x207544C
+        eu: 0x20742D0
       description: |-
         Updates the 64bit LCG and returns the upper 32bits of the LCG.
         Consumes one 64bit LCG
@@ -251,6 +305,7 @@ main:
     - name: getFloatRand
       address:
         jp: 0x20754D8
+        eu: 0x207435C
       description: |-
         Returns an IEEE 754 floating-point number less than 1 that depends on the current random number.
         (0.555 etc.)
@@ -262,6 +317,7 @@ main:
     - name: float_rand_range
       address:
         jp: 0x2075514
+        eu: 0x2074398
       description: |-
         Returns a random number of IEEE 754 floating-points between the IEEE 754 floating-points specified by argument 2 (maximum value) and argument 3 (minimum value).
         Consumes one 64bit LCG. (in the called function.)
@@ -275,6 +331,7 @@ main:
     - name: range_rand
       address:
         jp: 0x2075604
+        eu: 0x2074488
       description: |-
         Returns a random number between argument 2 (int) and argument 3 (int)
         Consumes one 64bit LCG. (in the called function.)
@@ -286,11 +343,23 @@ main:
     - name: float_to_int_by_round
       address:
         jp: 0x2075634
+        eu: 0x20744B8
       description: |-
         Round the 0th digit of the decimal point and convert it into an integer
         
         r0: IEEE 754 floating-point number
         return: (int) (input + 0.5)
+    - name: GenerateInitialSeed
+      address:
+        jp: 0x20CA828
+        eu: 0x20C8D6C
+      description: |-
+        Generate initial seeds for AT, BT, and CT using register memory. This initial seed is frame-based.
+        AT and BT share the same seed value and are executed before the first screen is displayed.
+        Generates the initial CT seed at the beginning of the battle. The range of generation is very wide (28 bit) and it is very difficult to predict or identify without cheating.
+        
+        No arguments
+        return: initial seed 2f6f6(AT and BT), 28bit seed(CT)
   data:
     - name: AT_LCG_Location
       address:
@@ -309,6 +378,7 @@ main:
     - name: CT_LCG_location
       address:
         jp: 0x2385F0C
+        eu: 0x2388B9C
       length:
         jp: 0x8
         eu: 0x8

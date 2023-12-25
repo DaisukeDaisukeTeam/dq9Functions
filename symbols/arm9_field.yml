@@ -28,12 +28,27 @@ main:
       description: |-
         Generate the number of monsters, 2nd group, and 3rd group using BT.
         
-        r0: jp(0x020FDBCC) table base address
+        r0: jp(0x20FDBCC) table base address
         r1: 1 Group monsterId
         r2: Table ID used to determine the type of companion?
         r3: Table ID used for companion determination and 1G number determination?
-        arg5: jp(0x027E345C), the resulting structure
-        arg6: jp(0x020FDAAC), field information. Used to get the upper limit of monsters.
+        arg5: jp(0x27E345C), the resulting structure
+        arg6: jp(0x20FDAAC), field information. Used to get the upper limit of monsters.
+    - name: GenerateCompanionByAT
+      address:
+        jp: 0x209d1c0
+      description: |-
+        Use AT to generate complete maritime encounters. Generates from the 1st group to the 3rd group.
+        There is a sea area, and the range of the sea area is listed in the Japanese DQ9 strategy book etc.
+        The number of groups increases every 33.3333%
+
+        Consume AT random number
+        Consumes BT random number
+        
+        r0: jp(0x20FDBCC) table base address
+        r1: table Id 114-117
+        r2: the resulting structure
+        r3: jp(0x20FDAAC) This is where the upper limit information is stored, the upper limit is always 5 bodies
   data:
     - name: AT_LCG_Location
       address:

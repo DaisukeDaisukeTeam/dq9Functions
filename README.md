@@ -63,7 +63,7 @@ Some of the intended uses are
 - Lottery for the number of encounters and types of the second and subsequent groups on the ground
 - Consumed during super special moves
 - Lottery for Zaoral
-- Lottery for escape
+- Lottery for flee
 - Lottery for messages of examine command
 
 will be updated with the following expression

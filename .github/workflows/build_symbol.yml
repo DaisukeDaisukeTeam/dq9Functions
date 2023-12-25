@@ -70,14 +70,17 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.0.0
       with:
+        name: jpn
         path: ${{ github.workspace }}/dq9Functions/symbol_jpn.zip 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.0.0
       with:
+        name: eur
         path: ${{ github.workspace }}/dq9Functions/symbol_eur.zip
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.0.0
       with:
+        name: usa
         path: ${{ github.workspace }}/dq9Functions/symbol_usa.zip
           
     

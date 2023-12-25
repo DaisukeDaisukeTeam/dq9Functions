@@ -1,18 +1,21 @@
 main:
   versions:
-    - jp
-    - eu
+    - jpn
+    - eur
+    - usa
   address:
-    jp: 0x2000000
-    eu: 0x2000000
+    jpn: 0x2000000
+    eur: 0x2000000
+    usa: 0x2000000
   length:
-    v1: 0xF08000
-    v2: 0xF08000
+    jpn: 0xF08000
+    eur: 0xF08000
+    usa: 0xF08000
   description: main memory
   functions:
-    - name: memcpy
+    - name: memcpyg
       address:
-        jp: 0x200195C
+        jpn: 0x200195C
       description: |-
         memcpy
         
@@ -21,8 +24,9 @@ main:
         r2: length
     - name: UpdateAT
       address:
-        jp: 0x2003C30
-        eu: 0x2003D14
+        jpn: 0x2003C30
+        eur: 0x2003D14
+        usa: 0x2003D14
       description: |-
         Update 32bit LCG which is AT.
         Many functions mod (divide) this return value to obtain random numbers instead of using the rand function. This is probably a result of function folding due to compile-time optimization.
@@ -32,8 +36,9 @@ main:
         return: (int) 0x7fff & [32bit rand] >> 0x10
     - name: setAT
       address:
-        jp: 0x2003C64
-        eu: 0x2003D48
+        jpn: 0x2003C64
+        eur: 0x2003D48
+        usa: 0x2003D48
       description: |-
         Initialize AT with arguments
         Set AT to the specified random value. This is probably used for map generation such as treasure maps
@@ -41,8 +46,9 @@ main:
         r0: int rand 2f6f6 etc
     - name: FloatAdd
       address:
-        jp: 0x200B880
-        eu: 0x200B9BC
+        jpn: 0x200B880
+        eur: 0x200B9BC
+        usa: 0x200B9BC
       description: |-
         add between IEEE 754 floating-point numbers
         
@@ -51,8 +57,9 @@ main:
         return: (float) r0 + r1
     - name: FloatGreaterThan
       address:
-        jp: 0x200BE2C
-        eu: 0x200BF68
+        jpn: 0x200BE2C
+        eur: 0x200BF68
+        usa: 0x200BF68
       description: |-
         Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, and sets CPSR at the same time
         
@@ -61,8 +68,9 @@ main:
         return: r0 > r1
     - name: FloatGreaterThanOrEqualTo
       address:
-        jp: 0x200BE88
-        eu: 0x200BFC4
+        jpn: 0x200BE88
+        eur: 0x200BFC4
+        usa: 0x200BFC4
       description: |-
         Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, and sets CPSR at the same time
         
@@ -71,8 +79,9 @@ main:
         return: r0 >= r1
     - name: FloatLessThanOrEqualTo
       address:
-        jp: 0x200BEE4
-        eu: 0x200C020
+        jpn: 0x200BEE4
+        eur: 0x200C020
+        usa: 0x200C020
       description: |-
         Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, and sets CPSR at the same time
         
@@ -81,8 +90,9 @@ main:
         return: r0 <= r1
     - name: FloatLesshan
       address:
-        jp: 0x200BF4C
-        eu: 0x200C088
+        jpn: 0x200BF4C
+        eur: 0x200C088
+        usa: 0x200C088
       description: |-
         Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, and sets CPSR at the same time
         
@@ -91,8 +101,9 @@ main:
         return: r0 < r1
     - name: FloatEqualTo
       address:
-        jp: 0x200BFA8
-        eu: 0x200C0E4
+        jpn: 0x200BFA8
+        eur: 0x200C0E4
+        usa: 0x200C0E4
       description: |-
         Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, It looks like there is a NAN check or an INF check
         
@@ -101,8 +112,9 @@ main:
         return: r0 == r1
     - name: FloatNotEqualTo
       address:
-        jp: 0x200C010
-        eu: 0x200C14C
+        jpn: 0x200C010
+        eur: 0x200C14C
+        usa: 0x200C14C
       description: |-
         Compares IEEE 754 floating-point numbers, returns the result as 1 or 0, It looks like there is a NAN check or an INF check
         
@@ -111,8 +123,9 @@ main:
         return: r0 != r1
     - name: FloatDivision
       address:
-        jp: 0x200C084
-        eu: 0x200C1C0
+        jpn: 0x200C084
+        eur: 0x200C1C0
+        usa: 0x200C1C0
       description: |-
         Division between IEEE 754 floating-point numbers
         
@@ -121,8 +134,9 @@ main:
         return: (float) r0 / r1
     - name: FloatToInt1
       address:
-        jp: 0x200C4C0
-        eu: 0x200C5FC
+        jpn: 0x200C4C0
+        eur: 0x200C5FC
+        usa: 0x200C5FC
       description: |-
         Converts an IEEE 754 floating-point number to an integer, truncating the decimal places.
         I have no idea why there are 3 variants
@@ -131,8 +145,9 @@ main:
         return: (int) r0
     - name: FloatToInt3
       address:
-        jp: 0x200C4F4
-        eu: 0x200C630
+        jpn: 0x200C4F4
+        eur: 0x200C630
+        usa: 0x200C630
       description: |-
         Converts an IEEE 754 floating-point number to an integer, truncating the decimal places.
         I have no idea why there are 3 variants
@@ -141,8 +156,9 @@ main:
         return: (int) r0
     - name: FloatToInt2
       address:
-        jp: 0x200C534
-        eu: 0x200C670
+        jpn: 0x200C534
+        eur: 0x200C670
+        usa: 0x200C670
       description: |-
         Converts an IEEE 754 floating-point number to an integer, truncating the decimal places.
         I have no idea why there are 3 variants
@@ -151,8 +167,9 @@ main:
         return: (int) r0
     - name: IntToFloat
       address:
-        jp: 0x200C57C
-        eu: 0x200C670
+        jpn: 0x200C57C
+        eur: 0x200C670
+        usa: 0x200C670
       description: |-
         Converts an integer to an IEEE 754 floating-point number
         
@@ -160,8 +177,9 @@ main:
         return: (float) r0
     - name: FloatMultiplication
       address:
-        jp: 0x200C698
-        eu: 0x200C7D4
+        jpn: 0x200C698
+        eur: 0x200C7D4
+        usa: 0x200C7D4
       description: |-
         Multiplying IEEE 754 floating-point numbers
         
@@ -170,8 +188,9 @@ main:
         return: (float) r0 * r1
     - name: FloatRoot
       address:
-        jp: 0x200C878
-        eu: 0x200C9B4
+        jpn: 0x200C878
+        eur: 0x200C9B4
+        usa: 0x200C9B4
       description: |-
         root the input and returns the result as an IEEE 754 floating-point number
         
@@ -179,8 +198,9 @@ main:
         return: (float) sqrt(r0)
     - name: FloatSubtraction
       address:
-        jp: 0x200C968
-        eu: 0x200CAA4
+        jpn: 0x200C968
+        eur: 0x200CAA4
+        usa: 0x200CAA4
       description: |-
         Subtraction between IEEE 754 floating-point numbers
         
@@ -189,8 +209,9 @@ main:
         return: (float) r0 - r1
     - name: int32Division1
       address:
-        jp: 0x200CE08
-        eu: 0x200CF44
+        jpn: 0x200CE08
+        eur: 0x200CF44
+        usa: 0x200CF44
       description: |-
         r0 returns "r0 / r1" and r1 returns "r0 mod r1".
         
@@ -199,8 +220,9 @@ main:
         return: (double) (((int)(r0 / r1)) << 32) | (r0 mod r1)
     - name: int16Division2_1
       address:
-        jp: 0x200D014
-        eu: 0x200D150
+        jpn: 0x200D014
+        eur: 0x200D150
+        usa: 0x200D150
       description: |-
         I don't know because I haven't verified it, but I think it's probably 16-bit division.
         r0 returns "r0 / r1" and r1 returns "r0 mod r1".
@@ -210,8 +232,9 @@ main:
         return: (double) (((int)(r0 / r1)) << 32) | (r0 mod r1)
     - name: int16Division2_2
       address:
-        jp: 0x200D01C
-        eu: 0x200D158
+        jpn: 0x200D01C
+        eur: 0x200D158
+        usa: 0x200D158
       description: |-
         I don't know because I haven't verified it, but I think it's probably 16-bit division.
         Same as int16Division2_1, but without checking if argument 2 is 0.
@@ -222,7 +245,7 @@ main:
         return: (double) (((int)(r0 / r1)) << 32) | (r0 mod r1)
     - name: memclear
       address:
-        jp: 0x200F238
+        jpn: 0x200F238
       description: |-
         fill with 0
         
@@ -230,21 +253,24 @@ main:
         r1: length
     - name: InitSeedetc
       address:
-        jp: 0x200F268
-        eu: 0x200F3A4
+        jpn: 0x200F268
+        eur: 0x200F3A4
+        usa: 0x200F3A4
       description: "Initialize AT and BT with this function. I don't know about other processes"
     - name: InitTavernParty
       address:
-        jp: 0x20107F8
-        eu: 0x20109AC
+        jpn: 0x20107F8
+        eur: 0x20109AC
+        usa: 0x201099C
       description: |-
         While creating the adventure book (4th slime), consume BT to generate the initial members of Ruida's Tavern.
         I don't know about anything else.
-        It is known that the processing is different between the EU version and the JP version.
+        It is known that the processing is different between the eur version and the jpn version.
     - name: AT_Rand
       address:
-        jp: 0x2031EA8
-        eu: 0x2032380
+        jpn: 0x2031EA8
+        eur: 0x2032380
+        usa: 0x2032370
       description: |-
         AT rand function.
         
@@ -252,21 +278,24 @@ main:
         return: [0]-[Maximum value-1]
     - name: getBTAddress
       address:
-        jp: 0x207535C
-        eu: 0x20741E0
+        jpn: 0x207535C
+        eur: 0x20741E0
+        usa: 0x20741D0
       description: |-
         Returns the location of the Hoimi table in memory.
-        It is known that the Hoimi table uses a 64bit LCG algorithm and is stored in 0x02108D20 in JP and 0x02108DDC in EU.
+        It is known that the Hoimi table uses a 64bit LCG algorithm and is stored in 0x02108D20 in jpn and 0x02108DDC in eur.
         
         return: memory address
     - name: init_LCG
       address:
-        jp: 0x20753C4
-        eu: 0x2074248
+        jpn: 0x20753C4
+        eur: 0x2074248
+        usa: 0x2074238
       description: "Initialize 64bit LCG. I don't know about the arguments yet"
     - name: get_lcg_bit2
       address:
-        jp: 0x2075424
+        jpn: 0x2075424
+        usa: 0x2074298
       description: |-
         returns [r0+4]
         
@@ -274,7 +303,8 @@ main:
         return: current raw random value
     - name: get_lcg_bit1
       address:
-        jp: 0x2075438
+        jpn: 0x2075438
+        usa: 0x20742AC
       description: |-
         returns [r0]
         
@@ -282,8 +312,9 @@ main:
         return: current raw random value
     - name: UpdateLCG
       address:
-        jp: 0x207544C
-        eu: 0x20742D0
+        jpn: 0x207544C
+        eur: 0x20742D0
+        usa: 0x20742C0
       description: |-
         Updates the 64bit LCG and returns the upper 32bits of the LCG.
         Consumes one 64bit LCG
@@ -294,8 +325,9 @@ main:
         return: Upper 32bit of updated 64bit LCG, seed >> 32
     - name: generate_random_until
       address:
-        jp: 0x2075488
-        eu: 0x207430C
+        jpn: 0x2075488
+        eur: 0x207430C
+        usa: 0x20742FC
       description: |-
         Returns a random number from 0 to the natural number input as the second argument - 1.
         This is a rand function that is mainly used preferentially in BT, and is also used in CT when branching when the probability is less than a certain value.
@@ -306,8 +338,9 @@ main:
         return: Natural number [0]-[maximum rand-1]
     - name: getFloatRand
       address:
-        jp: 0x20754D8
-        eu: 0x207435C
+        jpn: 0x20754D8
+        eur: 0x207435C
+        usa: 0x207434C
       description: |-
         Returns an IEEE 754 floating-point number less than 1 that depends on the current random number.
         (0.555 etc.)
@@ -318,8 +351,9 @@ main:
         return: IEEE 754 floating-point number(0.55555 etc)
     - name: float_rand_range
       address:
-        jp: 0x2075514
-        eu: 0x2074398
+        jpn: 0x2075514
+        eur: 0x2074398
+        usa: 0x2074388
       description: |-
         Returns a random number of IEEE 754 floating-points between the IEEE 754 floating-points specified by argument 2 (maximum value) and argument 3 (minimum value).
         Consumes one 64bit LCG. (in the called function.)
@@ -332,8 +366,9 @@ main:
         return: IEEE 754 floating-point number(0.55555 etc)
     - name: range_rand
       address:
-        jp: 0x2075604
-        eu: 0x2074488
+        jpn: 0x2075604
+        eur: 0x2074488
+        usa: 0x2074478
       description: |-
         Returns a random number between argument 2 (int) and argument 3 (int)
         Consumes one 64bit LCG. (in the called function.)
@@ -344,8 +379,9 @@ main:
         return: [Minimum]-[Maximum] (maybe)
     - name: float_to_int_by_round
       address:
-        jp: 0x2075634
-        eu: 0x20744B8
+        jpn: 0x2075634
+        eur: 0x20744B8
+        usa: 0x20744A8
       description: |-
         Round the 0th digit of the decimal point and convert it into an integer
         
@@ -353,8 +389,9 @@ main:
         return: (int) (input + 0.5)
     - name: GenerateInitialSeed
       address:
-        jp: 0x20CA828
-        eu: 0x20C8D6C
+        jpn: 0x20CA828
+        eur: 0x20C8D6C
+        usa: 0x20C8D5C
       description: |-
         Generate initial seeds for AT, BT, and CT using register memory. This initial seed is frame-based.
         AT and BT share the same seed value and are executed before the first screen is displayed.
@@ -367,22 +404,25 @@ main:
   data:
     - name: AT_LCG_Location
       address:
-        jp: 0x20EEE90
-        eu: 0x20EEF30
+        jpn: 0x20EEE90
+        eur: 0x20EEF30
+        usa: 0x20EEF30
       length:
-        jp: 0x4
-        eu: 0x4
+        jpn: 0x4
+        eur: 0x4
     - name: BT_LCG_location
       address:
-        jp: 0x2108D20
-        eu: 0x2108DDC
+        jpn: 0x2108D20
+        eur: 0x2108DDC
+        usa: 0x2108DDC
       length:
-        jp: 0x8
-        eu: 0x8
+        jpn: 0x8
+        eur: 0x8
     - name: CT_LCG_location
       address:
-        jp: 0x2385F0C
-        eu: 0x2388B9C
+        jpn: 0x2385F0C
+        eur: 0x2388B9C
+        usa: 0x2388B9C
       length:
-        jp: 0x8
-        eu: 0x8
+        jpn: 0x8
+        eur: 0x8

@@ -30,7 +30,7 @@ This is the first random number in the game where the 32-bit LCG algorithm is us
 - Monster treasure chest drops
 - Symbol movement direction determination
 - Monster determination of encounters at sea
-- Drawing lots for too stunned to move
+- Lottery for too stunned to move
 
 will be updated with the following expression
 ```

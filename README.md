@@ -59,7 +59,8 @@ Some of the intended uses are
 - Recovery on feeds
 - Rewards from the Demon King or Map Boss
 - Lottery for items from the Fountain
-- Determination of member's gesture and accompaniment
+- Shuffling of member gestures and lottery for delayed animation start period
+- Lottery for the number of encounters and types of the second and subsequent groups on the ground
 - Consumed during super special moves
 - Lottery for Zaoral
 - Lottery for escape
@@ -79,7 +80,8 @@ ATとBTは同じシード値を共有し、3dsでは初期シードの幅が非�
 - フィード上での回復
 - 魔王or地図ボスの報酬
 - 泉のアイテムの抽選
-- メンバーのしぐさ、お供決定
+- メンバーのしぐさのシャッフルと、アニメーション開始遅延期間の抽選
+- 地上での遭遇の数と、2グループ目以降の種類の抽選
 - 超必殺技時に消費する
 - ザオラルの抽選
 - 逃げるの抽選

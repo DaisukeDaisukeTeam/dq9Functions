@@ -6,3 +6,5 @@ Currently only a handful of functions from the jp version are provided
 It includes some functions for division and decimal point processing, and by sharing them, the purpose is to omit some of the tedious discrimination work.
 I'm not going to do a complete analysis.
 
+See the issue for instructions on how to import.
+https://github.com/DaisukeDaisukeTeam/dq9Functions/issues/1

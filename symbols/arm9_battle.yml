@@ -1,18 +1,18 @@
 main:
   versions:
-    - jp
+    - jpn
     - eu
   address:
-    jp: 0x2000000
+    jpn: 0x2000000
     eu: 0x2000000
   length:
-    jp: 0xF08000
+    jpn: 0xF08000
     eu: 0xF08000
   description: in battle memory
   functions:
     - name: IncreasedTension
       address:
-        jp: 0x2087F78
+        jpn: 0x2087F78
       description: |-
         handles increased tension
         
@@ -20,7 +20,7 @@ main:
         return are not yet understood
     - name: movementPattern
       address:
-        jp: 0x208AC64
+        jpn: 0x208AC64
       description: |-
         It seems to be used to determine enemy actions
         
@@ -28,7 +28,7 @@ main:
         return are not yet understood
     - name: IsCriticalHit
       address:
-        jp: 0x2158444
+        jpn: 0x2158444
       description: |-
         Determine if the attack is a critical hit.
         
@@ -36,7 +36,7 @@ main:
         return: (bool)
     - name: shieldGuard
       address:
-        jp: 0x21585B0
+        jpn: 0x21585B0
       description: |-
         Handles guard with shield
         
@@ -44,7 +44,7 @@ main:
         return: bool
     - name: chanceHeadpiece
       address:
-        jp: 0x21E3E2C
+        jpn: 0x21E3E2C
       description: |-
         Processes probability calculations for Kabutowari.
         
@@ -52,7 +52,7 @@ main:
         return are not yet understood
     - name: VitalPointThrust
       address:
-        jp: 0x21E4E9C
+        jpn: 0x21E4E9C
       description: |-
         Processes probability calculation of vital point thrust
         
@@ -61,8 +61,8 @@ main:
   data:
     - name: AT_LCG_Location
       address:
-        jp: 0x20EEE90
+        jpn: 0x20EEE90
         eu: 0x20EEF30
       length:
-        jp: 0x4
+        jpn: 0x4
         eu: 0x4

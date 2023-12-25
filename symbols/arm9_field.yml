@@ -1,44 +1,44 @@
 main:
   versions:
-    - jp
-    - eu
+    - jpn
+    - eur
   address:
-    jp: 0x2000000
-    eu: 0x2000000
+    jpn: 0x2000000
+    eur: 0x2000000
   length:
-    jp: 0xF08000
-    eu: 0xF08000
+    jpn: 0xF08000
+    eur: 0xF08000
   description: in field memory
   functions:
     - name: ChooseFieldMonsterId
       address:
-        jp: 0x2075168
-        eu: 0x2073FEC
+        jpn: 0x2075168
+        eur: 0x2073FEC
       description: |-
         Choose which monsters to spawn using AT, using the monster table and probabilities deployed at specific locations in memory.
         This function only chooses the type of spawning monsters. the conditions under which the monsters are generated are selected by an unknown function.
         If an ID that cannot be spawned is returned (id not on the table, trap monster, etc.), the spawn will not be performed.
         
         arguments are not yet understood
-        r1: jp(0x20FDB08?), eu(0x20FDDC4)
+        r1: jpn(0x20FDB08?), eur(0x20FDDC4)
         return: monsterId,
     - name: GenerateCompanionByBT
       address:
-        jp: 0x209CD4C
-        eu: 0x209AFE4
+        jpn: 0x209CD4C
+        eur: 0x209AFE4
       description: |-
         Generate the number of monsters, 2nd group, and 3rd group using BT.
         
-        r0: jp(0x20FDBCC), eu(0x20FDE68) table base address
+        r0: jpn(0x20FDBCC), eur(0x20FDE68) table base address
         r1: 1 Group monsterId
         r2: Table ID used to determine the type of companion?
         r3: Table ID used for companion determination and 1G number determination?
-        arg5: jp(0x27E345C), eu(0x27E333C) the resulting structure
-        arg6: jp(0x20FDAAC), eu(0x20FDD44) field information. Used to get the upper limit of monsters.
+        arg5: jpn(0x27E345C), eur(0x27E333C) the resulting structure
+        arg6: jpn(0x20FDAAC), eur(0x20FDD44) field information. Used to get the upper limit of monsters.
     - name: GenerateCompanionByAT
       address:
-        jp: 0x209D1C0
-        eu: 0x209B458
+        jpn: 0x209D1C0
+        eur: 0x209B458
       description: |-
         Use AT to generate complete maritime encounters. Generates from the 1st group to the 3rd group.
         There is a sea area, and the range of the sea area is listed in the Japanese DQ9 strategy book etc.
@@ -47,15 +47,15 @@ main:
         Consume AT random number
         Consumes BT random number
         
-        r0: jp(0x20FDBCC) table base address
+        r0: jpn(0x20FDBCC) table base address
         r1: table Id 114-117
         r2: the resulting structure
-        r3: jp(0x20FDAAC) This is where the upper limit information is stored, the upper limit is always 5 bodies
+        r3: jpn(0x20FDAAC) This is where the upper limit information is stored, the upper limit is always 5 bodies
   data:
     - name: AT_LCG_Location
       address:
-        jp: 0x20EEE90
-        eu: 0x20EEF30
+        jpn: 0x20EEE90
+        eur: 0x20EEF30
       length:
-        jp: 0x4
-        eu: 0x4
+        jpn: 0x4
+        eur: 0x4

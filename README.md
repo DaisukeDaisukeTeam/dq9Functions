@@ -89,9 +89,10 @@ ATとBTは同じシード値を共有し、3dsでは初期シードの幅が非�
 - 逃げるの抽選
 - examineコマンドのメッセージ抽選
 次の式で更新されます
---!>
+-->
 
 ### CT
+
 It is the third random number in the game and is used to randomize combat actions.
 An initial seed is generated at the start of each battle and is 28 bits wide, making it difficult to predict.
 
@@ -99,8 +100,10 @@ will be updated with the following expression
 ```
 seed(64bit) = ((seed * 0x5d588b656c078965) + 0x269ec3) & 0xFFFFFFFFFFFFFFFF
 ```
+
+
 <!--
 ゲームの3番目の乱数で、戦闘の行動の乱数に使用されています。
 戦闘開始時に毎回初期シードが生成され、28bitの幅を持つため、予測することは困難です。
 次の式で更新されます
---!>
+-->

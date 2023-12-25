@@ -30,7 +30,7 @@ main:
         rand = ((rand * 0x41C64E6D) + 0x3039 & 0xFFFFFFFF)
         
         return: (int) 0x7fff & [32bit rand] >> 0x10
-    - name: InitAT
+    - name: setAT
       address:
         jp: 0x2003C64
         eu: 0x2003D48
@@ -288,8 +288,10 @@ main:
         Updates the 64bit LCG and returns the upper 32bits of the LCG.
         Consumes one 64bit LCG
         
+        seed(64bit) = ((seed * 0x5d588b656c078965) + 0x269ec3) & 0xFFFFFFFFFFFFFFFF
+        
         r0: BT or CT address
-        return: Upper 32bit of updated 64bit LCG
+        return: Upper 32bit of updated 64bit LCG, seed >> 32
     - name: generate_random_until
       address:
         jp: 0x2075488
@@ -356,10 +358,12 @@ main:
       description: |-
         Generate initial seeds for AT, BT, and CT using register memory. This initial seed is frame-based.
         AT and BT share the same seed value and are executed before the first screen is displayed.
+        AT and BT are generated immediately after the game starts, so they generate random numbers ranging from hundreds to thousands, such as 2f6f6.
+        This does not apply if you reinitialize by displaying the first screen multiple times, etc.
         Generates the initial CT seed at the beginning of the battle. The range of generation is very wide (28 bit) and it is very difficult to predict or identify without cheating.
         
         No arguments
-        return: initial seed 2f6f6(AT and BT), 28bit seed(CT)
+        return: initial seed 2f6f6 etc(AT and BT), 28bit seed(CT)
   data:
     - name: AT_LCG_Location
       address:

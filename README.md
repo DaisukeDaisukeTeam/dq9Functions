@@ -9,6 +9,8 @@ I'm not going to do a complete analysis.
 See the issue for instructions on how to import.
 https://github.com/DaisukeDaisukeTeam/dq9Functions/issues/1
 
+# Glossary
+
 ## LCG
 Abbreviation for Linear congruential generator.
 It is a random number that is updated using the following formula.

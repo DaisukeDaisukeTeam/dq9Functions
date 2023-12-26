@@ -2,18 +2,22 @@ main:
   versions:
     - jpn
     - eur
+    - usa
   address:
     jpn: 0x2000000
     eur: 0x2000000
+    usa: 0x2000000
   length:
     jpn: 0xF08000
     eur: 0xF08000
+    usa: 0xF08000
   description: in field memory
   functions:
     - name: ChooseFieldMonsterId
       address:
         jpn: 0x2075168
         eur: 0x2073FEC
+        usa: 0x2073FDC
       description: |-
         Choose which monsters to spawn using AT, using the monster table and probabilities deployed at specific locations in memory.
         This function only chooses the type of spawning monsters. the conditions under which the monsters are generated are selected by an unknown function.
@@ -26,6 +30,7 @@ main:
       address:
         jpn: 0x209CD4C
         eur: 0x209AFE4
+        usa: 0x209AFD4
       description: |-
         Generate the number of monsters, 2nd group, and 3rd group using BT.
         
@@ -39,6 +44,7 @@ main:
       address:
         jpn: 0x209D1C0
         eur: 0x209B458
+        usa: 0x209B448
       description: |-
         Use AT to generate complete maritime encounters. Generates from the 1st group to the 3rd group.
         There is a sea area, and the range of the sea area is listed in the Japanese DQ9 strategy book etc.

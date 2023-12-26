@@ -13,7 +13,7 @@ main:
     usa: 0xF08000
   description: main memory
   functions:
-    - name: memcpyg
+    - name: memcpy
       address:
         jpn: 0x200195C
       description: |-
@@ -266,7 +266,7 @@ main:
         While creating the adventure book (4th slime), consume BT to generate the initial members of Ruida's Tavern.
         I don't know about anything else.
         It is known that the processing is different between the eur version and the jpn version.
-    - name: AT_Rand
+    - name: ATRandInt
       address:
         jpn: 0x2031EA8
         eur: 0x2032380
@@ -274,8 +274,8 @@ main:
       description: |-
         AT rand function.
         
-        r0: Maximum value (int)
-        return: [0]-[Maximum value-1]
+        r0: Maximum (int)
+        return: [0, Maximum - 1]
     - name: getBTAddress
       address:
         jpn: 0x207535C
@@ -286,13 +286,13 @@ main:
         It is known that the Hoimi table uses a 64bit LCG algorithm and is stored in 0x02108D20 in jpn and 0x02108DDC in eur.
         
         return: memory address
-    - name: init_LCG
+    - name: initLCG
       address:
         jpn: 0x20753C4
         eur: 0x2074248
         usa: 0x2074238
       description: "Initialize 64bit LCG. I don't know about the arguments yet"
-    - name: get_lcg_bit2
+    - name: getLcgBit2
       address:
         jpn: 0x2075424
         usa: 0x2074298
@@ -301,7 +301,7 @@ main:
         
         r0: BT or CT address
         return: current raw random value
-    - name: get_lcg_bit1
+    - name: getLcgBit1
       address:
         jpn: 0x2075438
         usa: 0x20742AC
@@ -323,19 +323,21 @@ main:
         
         r0: BT or CT address
         return: Upper 32bit of updated 64bit LCG, seed >> 32
-    - name: generate_random_until
+    - name: RandInt
       address:
         jpn: 0x2075488
         eur: 0x207430C
         usa: 0x20742FC
       description: |-
+        BT or CT rand (used 64bit LCG)
         Returns a random number from 0 to the natural number input as the second argument - 1.
+        It supports large numbers like r1 = 0x10000 (probably)
         This is a rand function that is mainly used preferentially in BT, and is also used in CT when branching when the probability is less than a certain value.
         Consumes one 64bit LCG (in the called function)
         
         r0: BT or CT address
-        r1: maximum rand
-        return: Natural number [0]-[maximum rand-1]
+        r1: maximum int
+        return: (int) [0, maximum - 1]
     - name: getFloatRand
       address:
         jpn: 0x20754D8
@@ -348,8 +350,8 @@ main:
         Consumes one 64bit LCG (in the called function)
         
         r0: BT or CT address
-        return: IEEE 754 floating-point number(0.55555 etc)
-    - name: float_rand_range
+        return: (float) [1, 0] (0.55555 etc)
+    - name: getFloatRandRange
       address:
         jpn: 0x2075514
         eur: 0x2074398
@@ -363,8 +365,24 @@ main:
         r0: BT or CT address
         r1: Maximum IEEE 754 floating-point number
         r2: Minimum IEEE 754 floating-point number
-        return: IEEE 754 floating-point number(0.55555 etc)
-    - name: range_rand
+        return: (float) [Minimum, Maximum], (0.55555 etc)
+    - name: getFloatRandWithPower
+      address:
+        jpn: 0x2075560
+        eur: 0x20743E4
+        usa: 0x20743D4
+      description: |-
+        I'm not sure, but it seems to be one of the range random number variants.
+        If argument 4 is 1, returns the decimal point between arguments 2 and 3.
+        I'm not sure about outputs other than 1.
+        To summarize the process, multiply "Argument 2" and "Argument 3" by "Argument 4 ** 10", then generate a random number with that width, and divide that value by "Argument 4 ** 10".
+        
+        r0: BT or CT address
+        r1: Minimum IEEE 754 floating-point number
+        r2: Maximum IEEE 754 floating-point number
+        r3: unknown int 1 etc (Power?)
+        return: (float) [Minimum, Maximum] (Output if r3 = 1)
+    - name: RandRangeInt
       address:
         jpn: 0x2075604
         eur: 0x2074488
@@ -376,7 +394,7 @@ main:
         r0: BT or CT address
         r1: Maximum int
         r2: Minimum int
-        return: [Minimum]-[Maximum] (maybe)
+        return: (int) [Minimum, Maximum] (maybe)
     - name: float_to_int_by_round
       address:
         jpn: 0x2075634

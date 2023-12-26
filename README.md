@@ -15,7 +15,7 @@ https://github.com/DaisukeDaisukeTeam/dq9Functions/issues/1
 Abbreviation for Linear congruential generator.
 It is a random number that is updated using the following formula.
 ```
-(seed * constant1) + constant2 mod (2^64 or 2^32)
+((seed * constant1) + constant2) mod (2^64 or 2^32)
 ```
 https://en.wikipedia.org/wiki/Linear_congruential_generator
 <!--

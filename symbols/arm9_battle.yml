@@ -28,7 +28,7 @@ main:
         
         arguments are not yet understood
         return are not yet understood
-    - name: EnemyActionDecision
+    - name: ProcessEnemyRandomAction
       address:
         jpn: 0x208AC64
       description: |-

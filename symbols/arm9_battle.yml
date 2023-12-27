@@ -8,7 +8,9 @@ main:
   length:
     jpn: 0xF08000
     eu: 0xF08000
-  description: in battle memory
+  description: |-
+    in battle memory.
+    The overlay number is unknown (it may be compressed), but these are the battle-related functions called during the battle phase that I investigated.
   functions:
     - name: IncreasedTension
       address:
@@ -39,22 +41,33 @@ main:
         jpn: 0x21585B0
       description: |-
         Handles guard with shield
-        
         arguments are not yet understood
         return: bool
-    - name: chanceHeadpiece
+    - name: CriticalHit50
+      address:
+        jpn: 0x21D9F14
+      description: |-
+        Damage calculation for Hatchet Man and Thunder Thrust. If this returns 0, it will be a miss, and if it returns 1 or more, the returned damage will be inflicted as is.
+        The process uses random numbers to calculate damage from 0.95 to 1.05 times the attack power.
+        
+        arguments are not yet understood
+        return: If 0, it will be treated as a miss, if it is 1 or more, it will occur with the same technical hit damage returned by this function.
+    - name: ProcessesHelmSplitter
       address:
         jpn: 0x21E3E2C
       description: |-
-        Processes probability calculations for Kabutowari.
+        Processes probability calculations for Helm Splitter(Kabutowari).
+        Get a random value at 0x21e3e78 and compare at 0x21e3eec.
+        The success rate is calculated by 100 * resistance to defense decrease. (0.5 etc) (probability calculation is another unknown function)
         
         arguments are not yet understood
         return are not yet understood
-    - name: VitalPointThrust
+    - name: ProcessesStrikeWeakness
       address:
         jpn: 0x21E4E9C
       description: |-
-        Processes probability calculation of vital point thrust
+        Processes probability calculation of Strike Weakness(vital point thrust)
+        The result is determined by a random number 0x021e4f04, which varies depending on the monster's resistance, but basically succeeds if it is less than or equal to "(int) 12.5%".
         
         arguments are not yet understood
         return are not yet understood

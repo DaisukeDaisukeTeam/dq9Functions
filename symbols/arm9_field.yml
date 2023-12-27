@@ -57,6 +57,18 @@ main:
         r1: table Id 114-117
         r2: the resulting structure
         r3: jpn(0x20FDAAC) This is where the upper limit information is stored, the upper limit is always 5 bodies
+    - name: PreemptiveLottery
+      address:
+        jpn: 0x2197C50
+      description: |-
+        A random number is used to choose whether the enemy is first, the party is first, or a normal encounter.
+        The process involves obtaining the highest dexterity value in the party and calculating the following formula
+        kiyousa * 0.05 + 2
+        And add an additional +10% chance if the player bumps into the monster's back.
+        Then, if the monster hits the player from behind, the enemy's first strike rate is determined at 12%, and the normal encounters at 2%.
+        
+        arguments are not yet understood
+        return: 0 for normal encounters, 1 for enemies too stunned to move, and 2 for monsters to attack you out of the blue.
   data:
     - name: AT_LCG_Location
       address:

@@ -28,6 +28,15 @@ main:
         
         arguments are not yet understood
         return are not yet understood
+    - name: EnemyActionDecision
+      address:
+        jpn: 0x208AC64
+      description: |-
+        Process enemy behavior patterns.
+        Called only for random actions, not if the action is program controlled. (probably)
+        
+        arguments are not yet understood
+        return are not yet understood
     - name: IsCriticalHit
       address:
         jpn: 0x2158444

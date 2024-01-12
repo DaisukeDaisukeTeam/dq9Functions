@@ -139,33 +139,32 @@ main:
         usa: 0x200C5FC
       description: |-
         Converts an IEEE 754 floating-point number to an integer, truncating the decimal places.
-        I have no idea why there are 3 variants
+        I have no idea why there are 2 variants
         
         r0: IEEE 754 floating-point number
         return: (int) r0
-    - name: FloatToInt3
+    - name: FloatToInt
       address:
         jpn: 0x200C4F4
         eur: 0x200C630
         usa: 0x200C630
       description: |-
         Converts an IEEE 754 floating-point number to an integer, truncating the decimal places.
-        I have no idea why there are 3 variants
+        I have no idea why there are 2 variants
         
         r0: IEEE 754 floating-point number
         return: (int) r0
-    - name: FloatToInt2
+    - name: IntToFloat2
       address:
         jpn: 0x200C534
         eur: 0x200C670
         usa: 0x200C670
       description: |-
-        Converts an IEEE 754 floating-point number to an integer, truncating the decimal places.
-        I have no idea why there are 3 variants
+        Converts an integer to an IEEE 754 floating-point number
         
         r0: IEEE 754 floating-point number
-        return: (int) r0
-    - name: IntToFloat
+        return: (float) r0
+    - name: IntToFloat1
       address:
         jpn: 0x200C57C
         eur: 0x200C670

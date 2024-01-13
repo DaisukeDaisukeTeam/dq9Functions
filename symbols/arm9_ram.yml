@@ -143,7 +143,7 @@ main:
         
         r0: IEEE 754 floating-point number
         return: (int) r0
-    - name: FloatToInt
+    - name: FloatToInt2
       address:
         jpn: 0x200C4F4
         eur: 0x200C630

@@ -13,6 +13,31 @@ main:
     usa: 0xF08000
   description: in field memory
   functions:
+    - name: getAddrCurrentFieldId
+      address:
+        jpn: 0x2012DAC
+      description: |-
+        Returns the current field id.
+        
+        return: field Id addr = DAT_020fb11c([DAT_02012db4] = DAT_020fb11c(CurrentField1_Id) = 0x4E21 = angel falls)
+    - name: getCurrentFieldStructure
+      address:
+        jpn: 0x202751C
+      description: |-
+        Gets the structure of the field where the player is currently located.
+        The current field id is stored in 0x020FB11C(CurrentField1_Id), and the function searches for the structure based on this.
+        
+        return: address 0x020FDAAC + 0x314 * N(0-3 or 4)
+    - name: SearchCurrentFieldStructure
+      address:
+        jpn: 0x2028420
+      description: |-
+        Finds a field structure that matches the condition of the argument.
+        see: getCurrentFieldStructure
+        
+        r0: 0x020FDAAC
+        r1: field id(angel falls = 0x4E21)
+        return: address 0x020FDAAC + 0x314 * N(0-3 or 4)
     - name: ChooseFieldMonsterId
       address:
         jpn: 0x2075168
@@ -57,6 +82,25 @@ main:
         r1: table Id 114-117
         r2: the resulting structure
         r3: jpn(0x20FDAAC) This is where the upper limit information is stored, the upper limit is always 5 bodies
+    - name: getEncTableStartAddr
+      address:
+        jpn: 0x209D75C
+      description: |-
+        Examine the table expanded to a specific location in memory and find the actual table start point based on the id.
+        
+        r0: table base addr
+        r1: table id
+        return: table start addr
+    - name: DAT_022A7100
+      address:
+        jpn: 0x218C1D0
+      description: |-
+        Return 0x022A7100.
+        Used in processing encounters.
+        It is probably the starting address of the monster structure.
+        
+        No arguments
+        return: 0x022A7100
     - name: PreemptiveLottery
       address:
         jpn: 0x2197C50
@@ -69,11 +113,55 @@ main:
         
         arguments are not yet understood
         return: 0 for normal encounters, 1 for enemies too stunned to move, and 2 for monsters to attack you out of the blue.
-  data:
-    - name: AT_LCG_Location
+    - name: getMonsterStructure
       address:
-        jpn: 0x20EEE90
-        eur: 0x20EEF30
+        jpn: 0x21A321C
+      description: |-
+        maybe get the structure of the specified monster
+        Get 0x020F33D8 and search based on this
+        
+        for i=0; i <= 0x2f?; i++ then
+          addr = (int) [0x020F33D8 + (i + 0x70) * 4 + 8] = 0x22F0E58
+          if addr == 0 then
+            continue
+          end
+          val = (short) [0x22F0E58 + 0x16a] = [0x22f0fc2] = 0x4
+          if val == param_2 then
+            ret addr
+          end
+        end
+        
+        structure monster{
+          short   [0x2]   monsterId
+          int     [0x8]   unknown int
+          float2  [0x44]  monster x
+          float2  [0x46]  monster chunk x
+          float2  [0x4c]  monster z
+          float2  [0x4E]  monster chunk z
+          float2  [0x54]  monster y
+          float2  [0x56]  monster chunk y
+          float2  [0x6c]  monster rotate
+          short   [0x168] spawned encounter table
+          int     [0x16a] encounter id addr
+          
+        }
+        
+        r0: maybe the starting address of the monster 0x22A7100(check if it's 0)
+        r1: Monster encountered 0-2f?
+        return: 0x022A7100
+  data:
+    - name: CurrentField1_Id
+      address:
+        jpn: 0x20FB11C
+      length:
+        jpn: 0x2
+    - name: FieldStructure1_id
+      address:
+        jpn: 0x20FDAAC
+      length:
+        jpn: 0x2
+    - name: UnknownEncounterRelated1
+      address:
+        jpn: 0x22A4B08
       length:
         jpn: 0x4
-        eur: 0x4

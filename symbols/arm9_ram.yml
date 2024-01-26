@@ -22,6 +22,16 @@ main:
         r0: to
         r1: from
         r2: length
+    - name: advanced_memcpy
+      address:
+        jpn: 0x200197C
+      description: |-
+        advanced memcpy
+        Negative support
+        
+        r0: to?
+        r1: from?
+        r2: length?
     - name: UpdateAT
       address:
         jpn: 0x2003C30

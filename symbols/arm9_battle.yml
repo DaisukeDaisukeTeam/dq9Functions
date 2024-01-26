@@ -12,6 +12,55 @@ main:
     in battle memory.
     The overlay number is unknown (it may be compressed), but these are the battle-related functions called during the battle phase that I investigated.
   functions:
+    - name: read_data_limit_e9
+      address:
+        jpn: 0x200FCC4
+      description: |-
+        Read data from memory with a limit of 0 to 0xe9
+        
+        return: [param1 + param2 * 4 + 8] or 0
+    - name: getDefenseMultiplier
+      address:
+        jpn: 0x2075AC4
+      description: |-
+        Get how much to reduce by defense
+        0x021e7ea0
+        
+        arguments are not yet understood
+        return: (float) 1.0 or 0.5 or 0.1
+    - name: getAttackStructure
+      address:
+        jpn: 0x207AC64
+      description: |-
+        Gets the structure of the specified attack ID.
+        
+        r0: Structure 0x02108D54{
+          [0x0] & fff = 0x8033d03f & 0xfff = 0x3f = Search start offset
+          [0x4] = 0x2304E60 = Attack base address
+        }
+        r1: attack id
+        return: Structure address example: 0x02359398{
+          [0x4] & 0xfff = unknown id 1, maybe attack id (DAT_021ecb94 = 0x14A???)
+          [0x4] << 0x14 = unknown
+          [0x8] >> 0xa << 0x18 = unknown
+          [0x8] << 0xc = unknown
+          [0x14] >> 0x1c = unknown Type, At the moment, it is probably classified as heel type, attack type, etc.
+          [0x18] >> 0x14 << 0x19 = unknown
+          [0x1c] << 0xd >> 0x1b = maybe Hit count Type
+        }
+    - name: SearchAttackStructure
+      address:
+        jpn: 0x207AC98
+      description: |-
+        Search the structure of the specified attack ID.
+        
+        r0: Structure 0x02108D54{
+          [0x0] & fff = 0x8033d03f & 0xfff = 0x3f = Search start offset
+          [0x4] = 0x2304E60 = Attack base address
+        }
+        r1: attack id
+        r2: [DAT_0207ac94] = (*code) LAB_0207a6dc
+        return: Structure address
     - name: IncreasedTension
       address:
         jpn: 0x2087F78
@@ -24,34 +73,98 @@ main:
       address:
         jpn: 0x208AC64
       description: |-
-        It seems to be used to determine enemy actions
-        
-        arguments are not yet understood
-        return are not yet understood
-    - name: ProcessEnemyRandomAction
-      address:
-        jpn: 0x208AC64
-      description: |-
         Process enemy behavior patterns.
         Called only for random actions, not if the action is program controlled. (probably)
         
         arguments are not yet understood
         return are not yet understood
+    - name: selectAIActions
+      address:
+        jpn: 0x208B210
+      description: |-
+        Select a random action for the AI that is not a rotary table
+        calls movementPattern
+        
+        arguments are not yet understood
+        return: selected action id
+    - name: getVictimAddress
+      address:
+        jpn: 0x2154E60
+      description: |-
+        read [020F33D8 + param_2 * 4 + 8]
+        Before returning the result, check that result & 0x80 != 0
+        
+        r0: unused
+        r1: Target of attack: 01 etc.
+        result: [020F33D8 + param_2 * 4 + 8]
+    - name: Processing_some_specialties
+      address:
+        jpn: 0x21563E8
+      description: |-
+        Handles specific types of specialties. I do not know more than that at this time.
+        Maybe the process is for the subject to change, for example, to cover for you.
+        
+        r0: MaybeProcessingDamage_FUN_21EBD9C_param1 + 0x10
+        r1: Target of attack: 01 etc.
+        r2: AttackStructure
+        return: r1
+    - name: isEvade
+      address:
+        jpn: 0x2157DC8
+      description: |-
+        Determine if the attack is Evade. If the return value is 0, the target will not receive any damage.
+        
+        arguments are not yet understood
+        return: bool, Evade if 0, damage if 1
     - name: IsCriticalHit
       address:
         jpn: 0x2158444
       description: |-
         Determine if the attack is a critical hit.
         
-        arguments are not yet understood
+        r0: [MaybeProcessingDamage_FUN_21EBD9C_param1+10]
+        r1: [[[MaybeProcessingDamage_FUN_21EBD9C + 4] + 0x10] + 0x20]
+        r2: AttackStructure
+        r3: Number_of_attacks
         return: (bool)
     - name: shieldGuard
       address:
         jpn: 0x21585B0
       description: |-
         Handles guard with shield
-        arguments are not yet understood
+        
+        r0: CT addr
+        r1: Current Attack destination
+        r2: unknown, AttackStructure???
         return: bool
+    - name: MaybeHasShield
+      address:
+        jpn: 0x2158718
+      description: |-
+        Returns 0 if equipped with a shield, supposed to return 1 if not equipped with a shield
+        If it is 0, it is equipped with a shield, if it is 1, it is not.
+        Used to determine shield guard
+        
+        r0: CT addr
+        r1: Current Attack destination
+        r2: unknown, AttackStructure???
+    - name: isWakeUp
+      address:
+        jpn: 0x2158A08
+      description: |-
+        I'm not sure, but I think it's a judgment that wakes up as the turn progresses.
+        
+        arguments are not yet understood
+        return are not yet understood
+    - name: ProcessesTurn
+      address:
+        jpn: 0x215EDBC
+      description: |-
+        Processes the events of one turn during the battle.
+        Invoked by FUN_0216ae9c
+        
+        arguments are not yet understood
+        return are not yet understood
     - name: CriticalHit50
       address:
         jpn: 0x21D9F14
@@ -61,6 +174,15 @@ main:
         
         arguments are not yet understood
         return: If 0, it will be treated as a miss, if it is 1 or more, it will occur with the same technical hit damage returned by this function.
+    - name: CalculateBaseAttackPower
+      address:
+        jpn: 0x21DAE1C
+      description: |-
+        Calculate the base attack damage.
+        0x021e7ea0
+        
+        arguments are not yet understood
+        return: (int) standard attack damage.
     - name: ProcessesHelmSplitter
       address:
         jpn: 0x21E3E2C
@@ -77,6 +199,75 @@ main:
       description: |-
         Processes probability calculation of Strike Weakness(vital point thrust)
         The result is determined by a random number 0x021e4f04, which varies depending on the monster's resistance, but basically succeeds if it is less than or equal to "(int) 12.5%".
+        
+        arguments are not yet understood
+        return are not yet understood
+    - name: ProcessingDefense1
+      address:
+        jpn: 0x21E7328
+      description: |-
+        Performs defensive calculations
+        0x021ecf74
+        
+        arguments are not yet understood
+        return: Reduced damage
+    - name: getAttackCount
+      address:
+        jpn: 0x21E9658
+      description: |-
+        Gets the number of times the attack will be performed.
+        I think the first switch is probably the number of hits.
+        
+        r0: MaybeProcessingDamage_FUN_21EBD9C param1
+        r1: [[[MaybeProcessingDamage_FUN_21EBD9C + 4] + 0x10] + 0x20]
+        r2: return value of getAttackStructure
+        r3: sp+0x114
+        param5: sp+0x0,sp+0x60 = Return value of FUN_02155848 or FUN_02155b8c (r11), It is probably the number of people in the attack group.
+        return: Structure address, *param4 = Memory related to attack target, The array may have instructions for the attack target, such as 03.
+    - name: FUN_021ea340
+      address:
+        jpn: 0x21EA340
+      description: |-
+        r0: MaybeProcessingDamage_FUN_21EBD9C_param1
+        r1: [[[MaybeProcessingDamage_FUN_21EBD9C_param1 + 4] + 0x10] + 0x20]
+        r2: unknown: addr sp+0xd0, Not the result
+        r3: AttackStructure
+    - name: AttacksHaveCriticalHits
+      address:
+        jpn: 0x21EAC9C
+      description: |-
+        A critical hit is flagged when the unknown type is 3 or 4 and the attack type is 0 (probably a direct attack)
+        
+        r0: MaybeProcessingDamage_FUN_21EBD9C_param1 unused
+        r1: AttackStructure
+        return: If 1, there is a critical hit. 0 will never occur
+    - name: NormalAttacksHaveCriticalHits
+      address:
+        jpn: 0x21EACCC
+      description: |-
+        Determines whether a normal attack has a critical hit.
+        
+        r0: MaybeProcessingDamage_FUN_21EBD9C_param1 unused
+        r1: AttackStructure
+        r2: [[[MaybeProcessingDamage_FUN_21EBD9C_param1 + 4] + 0x10] + 0x20]
+        return: If 1, there is a critical hit. 0 will never occur
+    - name: initialize_some_structure_related_battle_1
+      address:
+        jpn: 0x21EBCDC
+      description: |-
+        Initialize the structure related to battle processing
+        
+        r1: structure address
+        return: void
+    - name: MaybeProcessingDamage_FUN_21EBD9C
+      address:
+        jpn: 0x21EBD9C
+      description: |-
+        Might be a function that processes a single attack.
+        
+        structure param1{
+          [0x10] = CT address
+        }
         
         arguments are not yet understood
         return are not yet understood

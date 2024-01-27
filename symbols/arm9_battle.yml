@@ -19,6 +19,16 @@ main:
         Read data from memory with a limit of 0 to 0xe9
         
         return: [param1 + param2 * 4 + 8] or 0
+    - name: getNormalAttackBaseDamage
+      address:
+        jpn: 0x207564C
+      description: |-
+        Calculate the base damage of a normal attack.
+        see: getAttackBaseDamage
+        
+        r0: Attacker's attack power
+        r1: Victim's defenses
+        r2: CT Address(0x02385F0C)
     - name: getDefenseMultiplier
       address:
         jpn: 0x2075AC4
@@ -116,6 +126,14 @@ main:
         
         arguments are not yet understood
         return: bool, Evade if 0, damage if 1
+    - name: getResistance
+      address:
+        jpn: 0x21582B8
+      description: |-
+        Returns the multiplier by which damage is reduced by resistant equipment.
+        
+        arguments are not yet understood
+        return: (float) 1.0 etc
     - name: IsCriticalHit
       address:
         jpn: 0x2158444
@@ -137,13 +155,11 @@ main:
         r1: Current Attack destination
         r2: unknown, AttackStructure???
         return: bool
-    - name: MaybeHasShield
+    - name: isEvasion
       address:
         jpn: 0x2158718
       description: |-
-        Returns 0 if equipped with a shield, supposed to return 1 if not equipped with a shield
-        If it is 0, it is equipped with a shield, if it is 1, it is not.
-        Used to determine shield guard
+        Determines whether the attack is an evasion.
         
         r0: CT addr
         r1: Current Attack destination
@@ -211,6 +227,16 @@ main:
         
         arguments are not yet understood
         return: Reduced damage
+    - name: getAttackBaseDamage
+      address:
+        jpn: 0x21E8458
+      description: |-
+        Calculate the base damage of the attack.
+        function calls getNormalAttackBaseDamage
+        see: getNormalAttackBaseDamage
+        
+        arguments are not yet understood
+        return: (int) base attack damage.
     - name: getAttackCount
       address:
         jpn: 0x21E9658

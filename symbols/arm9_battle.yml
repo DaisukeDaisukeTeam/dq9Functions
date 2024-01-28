@@ -88,6 +88,15 @@ main:
         
         arguments are not yet understood
         return are not yet understood
+    - name: ProcessAIScheme5
+      address:
+        jpn: 0x208AECC
+      description: |-
+        Turntable lottery using proprietary BT processing.
+        The unique bt implementation calculates 0 or 1 the first time, 2 or 3 the second time, and 4 or 5 the third time.
+        
+        arguments are not yet understood
+        return: attack id example: 0xbd
     - name: selectAIActions
       address:
         jpn: 0x208B210
@@ -131,6 +140,7 @@ main:
         jpn: 0x21582B8
       description: |-
         Returns the multiplier by which damage is reduced by resistant equipment.
+        0x021e7724
         
         arguments are not yet understood
         return: (float) 1.0 etc
@@ -195,7 +205,7 @@ main:
         jpn: 0x21DAE1C
       description: |-
         Calculate the base attack damage.
-        0x021e7ea0
+        //0x021e7ea0
         
         arguments are not yet understood
         return: (int) standard attack damage.

@@ -307,6 +307,15 @@ main:
         
         arguments are not yet understood
         return are not yet understood
+    - name: getHpPercentage
+      address:
+        jpn: 0x021dbc04
+      description: |-
+        0x021db8cc
+        Run HP/maxHP to calculate the percentage
+        
+        arguments are not yet understood
+        return HP / maxHP
   data:
     - name: AT_LCG_Location
       address:

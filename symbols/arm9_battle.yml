@@ -233,6 +233,7 @@ main:
         jpn: 0x21E7328
       description: |-
         Performs defensive calculations
+        At the same time, it seems to calculate multipliers such as combos.
         0x021ecf74
         
         arguments are not yet understood

@@ -29,6 +29,13 @@ main:
         r0: Attacker's attack power
         r1: Victim's defenses
         r2: CT Address(0x02385F0C)
+    - name: CalculateTensionOffset
+      address:
+        jpn: 0x20758F0
+      description: |-
+        r0: Tension level 1-4
+        r1: attacker level example: 17lv
+        return: (float) r0*(1+(r1/10))
     - name: getDefenseMultiplier
       address:
         jpn: 0x2075AC4
@@ -209,6 +216,15 @@ main:
         
         arguments are not yet understood
         return: (int) standard attack damage.
+    - name: getHpPercentage
+      address:
+        jpn: 0x21DBC04
+      description: |-
+        0x021db8cc
+        Run HP/maxHP to calculate the percentage
+        
+        arguments are not yet understood
+        return HP / maxHP
     - name: ProcessesHelmSplitter
       address:
         jpn: 0x21E3E2C
@@ -238,14 +254,6 @@ main:
         
         arguments are not yet understood
         return: Reduced damage
-    - name: CalculateTensionOffset
-      address:
-        jpn: 0x20758f0
-      description: |-
-        r0: Tension level 1-4
-        r1: attacker level example: 17lv
-        return: r0*(1+(r1/10))
-
     - name: getAttackBaseDamage
       address:
         jpn: 0x21E8458
@@ -316,15 +324,6 @@ main:
         
         arguments are not yet understood
         return are not yet understood
-    - name: getHpPercentage
-      address:
-        jpn: 0x021dbc04
-      description: |-
-        0x021db8cc
-        Run HP/maxHP to calculate the percentage
-        
-        arguments are not yet understood
-        return HP / maxHP
   data:
     - name: AT_LCG_Location
       address:

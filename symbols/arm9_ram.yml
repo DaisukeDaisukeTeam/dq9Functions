@@ -11,7 +11,10 @@ main:
     jpn: 0xF08000
     eur: 0xF08000
     usa: 0xF08000
-  description: main memory
+  description: |
+    main memory
+    
+    It lists functions that perform basic processing found in many functions and functions related to random numbers.
   functions:
     - name: memcpy
       address:
@@ -425,7 +428,7 @@ main:
         AT and BT are generated immediately after the game starts, so they generate random numbers ranging from hundreds to thousands, such as 2f6f6.
         This does not apply if you reinitialize by displaying the first screen multiple times, etc.
         Generates the initial CT seed at the beginning of the battle. The range of generation is very wide (Up to 32bit?) and it is very difficult to predict or identify without cheating.
-        This function returns a composite value of the software timer at a specific location and the hardware timer of the cpu. I don't know of any other exceptions.
+        This function returns a composite value of the software timer(Incremented approximately once every 0.2 seconds) at a specific location and the hardware timer(incremented hundreds of thousands of times per second) of the cpu. I don't know of any other exceptions.
         
         No arguments
         return: initial seed 2f6f6 etc(AT and BT), Up to 32bit seed(CT) (software timer　<< 16 | hardware timer)

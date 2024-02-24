@@ -238,6 +238,14 @@ main:
         
         arguments are not yet understood
         return: Reduced damage
+    - name: CalculateTensionOffset
+      address:
+        jpn: 0x20758f0
+      description: |-
+        r0: Tension level 1-4
+        r1: attacker level example: 17lv
+        return: r0*(1+(r1/10))
+
     - name: getAttackBaseDamage
       address:
         jpn: 0x21E8458

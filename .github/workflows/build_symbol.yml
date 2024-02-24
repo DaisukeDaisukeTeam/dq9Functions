@@ -18,13 +18,13 @@ jobs:
    
     - name: Cache
       id: rust-cache
-      uses: actions/cache@v3.3.2
+      uses: actions/cache@v4.0.0
       with:
         path: |
            ~/.cargo/bin/resymgen
         key: rust-cache1
           
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         path: 'dq9Functions'
     - uses: actions/checkout@v3
@@ -53,7 +53,7 @@ jobs:
         find output -type f -name "*_eur*" -exec zip symbol_eur.zip {} +
         find output -type f -name "*_usa*" -exec zip symbol_usa.zip {} +
     - name: Update latest branch release
-      uses: ncipollo/release-action@v1.13.0
+      uses: ncipollo/release-action@v1.14.0
       with:
           artifacts: |
             ${{ github.workspace }}/dq9Functions/symbol_jpn.zip
@@ -68,17 +68,17 @@ jobs:
           prerelease: ${{ endsWith(github.ref_name, '-preview') }}
 
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v4.0.0
+      uses: actions/upload-artifact@v4.3.1
       with:
         name: jpn
         path: ${{ github.workspace }}/dq9Functions/symbol_jpn.zip 
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v4.0.0
+      uses: actions/upload-artifact@v4.3.1
       with:
         name: eur
         path: ${{ github.workspace }}/dq9Functions/symbol_eur.zip
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v4.0.0
+      uses: actions/upload-artifact@v4.3.1
       with:
         name: usa
         path: ${{ github.workspace }}/dq9Functions/symbol_usa.zip

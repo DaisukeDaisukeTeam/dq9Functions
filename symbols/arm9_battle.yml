@@ -34,7 +34,7 @@ main:
         jpn: 0x20758F0
       description: |-
         r0: Tension level 1-4
-        r1: attacker level example: 17lv
+        r1: attacker level example: 17 level
         return: (float) r0*(1+(r1/10))
     - name: getDefenseMultiplier
       address:

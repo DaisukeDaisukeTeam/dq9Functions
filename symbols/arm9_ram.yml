@@ -423,7 +423,7 @@ main:
         eur: 0x20C8D6C
         usa: 0x20C8D5C
       description: |-
-        Generate initial seeds for AT, BT, and CT using register memory. This initial seed is frame-based.
+        Generate initial seeds for AT, BT, and CT. This initial seed is frame-based.
         AT and BT share the same seed value and are executed before the first screen is displayed.
         AT and BT are generated immediately after the game starts, so they generate random numbers ranging from hundreds to thousands, such as 2f6f6.
         This does not apply if you reinitialize by displaying the first screen multiple times, etc.

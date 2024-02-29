@@ -11,7 +11,7 @@ main:
     jpn: 0xF08000
     eur: 0xF08000
     usa: 0xF08000
-  description: |
+  description: |-
     main memory
     
     It lists functions that perform basic processing found in many functions and functions related to random numbers.

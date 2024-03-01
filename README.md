@@ -69,6 +69,7 @@ Some of the intended uses are
 - Lottery for messages of examine command
 - Lottery for name plate color
 - The number of enemies in normal encounters and the drawing of friends
+
 will be updated with the following expression
 ```
 seed(64bit) = ((seed * 0x5d588b656c078965) + 0x269ec3) & 0xFFFFFFFFFFFFFFFF

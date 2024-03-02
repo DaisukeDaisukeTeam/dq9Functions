@@ -198,6 +198,14 @@ main:
         
         arguments are not yet understood
         return are not yet understood
+    - name: Processingflee
+      address:
+        jpn: 0x2160F28
+      description: |-
+        The function determines whether flee is successful or not.The details are not yet known.
+        
+        arguments are not yet understood
+        return: bool If true, flee will succeed, if false, flee will fail
     - name: CriticalHit50
       address:
         jpn: 0x21D9F14

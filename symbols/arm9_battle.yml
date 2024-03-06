@@ -201,6 +201,7 @@ main:
     - name: Processingflee
       address:
         jpn: 0x2160F28
+        usa: 0x215F7A8
       description: |-
         The function determines whether flee is successful or not.The details are not yet known.
         

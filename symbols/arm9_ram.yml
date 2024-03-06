@@ -180,8 +180,8 @@ main:
     - name: IntToFloat1
       address:
         jpn: 0x200C57C
-        eur: 0x200C670
-        usa: 0x200C670
+        eur: 0x200C6B8
+        usa: 0x200C6B8
       description: |-
         Converts an integer to an IEEE 754 floating-point number
         

@@ -144,6 +144,14 @@ main:
         r1: Target of attack: 01 etc.
         r2: AttackStructure
         return: r1
+    - name: isAcrobatStar
+      address:
+        jpn: 0x2157B84
+      description: |-
+        Checks whether Acrobat Star is enabled at the address specified in argument 1 and returns it as bool
+        
+        r0: unknown address
+        return:  If 0, Acrobat Star is disabled; if 1, Acrobat Star is enabled
     - name: isEvade
       address:
         jpn: 0x2157DC8
@@ -375,14 +383,6 @@ main:
         
         arguments are not yet understood
         return are not yet understood
-    - name: isAcrobatStar
-      address:
-        jpn: 0x02157b84
-      description: |-
-        Checks whether Acrobat Star is enabled at the address specified in argument 1 and returns it as bool
-        
-        r0: unknown address
-        return:  If 0, Acrobat Star is disabled; if 1, Acrobat Star is enabled
   data:
     - name: AT_LCG_Location
       address:

@@ -187,6 +187,17 @@ main:
         
         r0: int
         return: (float) r0
+    - name: IntToFloat3Plus
+      address:
+        jpn: 0x200C5C4
+        eur: 0x200C700
+        usa: 0x200C700
+      description: |-
+        IntToFloat with options, I don't know the details.
+        
+        r0: Integer to convert to decimal
+        r1: Unknown int
+        return: (float) (r1 >= 0&&r1 !== 0 ? IntToFloat2(r0) : UnknownProcess(r0, r1)
     - name: FloatMultiplication
       address:
         jpn: 0x200C698
@@ -431,7 +442,7 @@ main:
         This function returns a composite value of the software timer(Incremented approximately once every 0.125 seconds) at a specific location and the hardware timer(incremented hundreds of thousands of times per second) of the cpu. I don't know of any other exceptions.
         The software timer increments once every 0.12515 second, increasing 7.990 times per second.
         The return value of this function is used to get the number of seconds the game has been started.
-        For example, in FUN_0200cda0 (the function returns the time since the adventure started), GenerateInitialSeed is used.
+        For example, in FUN_0200cda0(FUN_02010404) (the function returns the time since the adventure started), GenerateInitialSeed is used.
         
         No arguments
         return: initial seed 2f6f6 etc(AT and BT), Up to 32bit seed(CT) (software timer　<< 16 | hardware timer)

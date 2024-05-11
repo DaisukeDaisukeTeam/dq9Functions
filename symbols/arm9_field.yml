@@ -134,13 +134,24 @@ main:
         structure monster{
           short   [0x2]   monsterId
           int     [0x8]   unknown int
+          int     [0x38]  monster freeze tick(animation stop)
+          float2  [0x40]  monster transparency
           float2  [0x44]  monster x
           float2  [0x46]  monster chunk x
           float2  [0x4c]  monster z
           float2  [0x4E]  monster chunk z
-          float2  [0x54]  monster y
-          float2  [0x56]  monster chunk y
-          float2  [0x6c]  monster rotate
+          float2  [0x50]  monster rotation z
+          float2  [0x54]  monster rotation diff y1
+          float2  [0x56]  monster rotation diff y2
+          float2  [0x58]  monster rotation x
+          float2  [0xC4]  Animation growing from the ground y
+          ?       [0x5C]  monster size x
+          ?       [0x5E]  monster size y
+          ?       [0x60]  monster size z
+          float2? [0xAE]  monster rotation y
+          float2? [0x124] monster y+ offset
+          short   [0x126] monster chunk y+ offset
+          
           short   [0x168] spawned encounter table
           int     [0x16a] encounter id addr
           

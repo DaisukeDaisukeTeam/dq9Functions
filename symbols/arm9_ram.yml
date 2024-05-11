@@ -197,7 +197,7 @@ main:
         
         r0: Integer to convert to decimal
         r1: Unknown int
-        return: (float) (r1 >= 0&&r1 !== 0 ? IntToFloat2(r0) : UnknownProcess(r0, r1)
+        return: (float) (r1 > 0& ? IntToFloat2(r0) : UnknownProcess(r0, r1)
     - name: FloatMultiplication
       address:
         jpn: 0x200C698
@@ -446,6 +446,25 @@ main:
         
         No arguments
         return: initial seed 2f6f6 etc(AT and BT), Up to 32bit seed(CT) (software timer　<< 16 | hardware timer)
+    - name: WriteEncounter
+      address:
+        jpn: 0x0209d700
+      description: |-
+        Write the Encounter data
+        FUN_0209cab8
+    - name: WriteCompanion
+      address:
+        jpn: 0x0209d720
+      description: |-
+        Write the companion data
+        FUN_0209cb88
+    - name: WriteEncounterId
+      address:
+        jpn: 0x0209cc14
+      description: |-
+        Write the Encounter id data
+        
+
   data:
     - name: AT_LCG_Location
       address:

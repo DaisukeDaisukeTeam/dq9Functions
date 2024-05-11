@@ -137,9 +137,9 @@ main:
           int     [0x38]  monster freeze tick(animation stop)
           float2  [0x40]  monster transparency
           float2  [0x44]  monster x
-          float2  [0x46]  monster chunk x
+          short   [0x46]  monster chunk x
           float2  [0x4c]  monster z
-          float2  [0x4E]  monster chunk z
+          short   [0x4E]  monster chunk z
           float2  [0x50]  monster rotation z
           float2  [0x54]  monster rotation diff y1
           float2  [0x56]  monster rotation diff y2

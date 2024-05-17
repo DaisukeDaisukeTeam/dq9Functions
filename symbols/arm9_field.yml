@@ -38,6 +38,17 @@ main:
         r0: 0x020FDAAC
         r1: field id(angel falls = 0x4E21)
         return: address 0x020FDAAC + 0x314 * N(0-3 or 4)
+    - name: getSpawningMonsters
+      address:
+        jpn: 0x2075168
+      description: |-
+        Lottery for monsters to spawn in the field
+        This table is not affected by grotto's special floor
+        If this function returns a number that does not exist in the table, no spawning will occur and it will be ignored
+        LR: 0x02074E20
+        
+        r0: BaseAddr, 0x020FDB08
+        return: monsterId、Ignored if invalid
     - name: ChooseFieldMonsterId
       address:
         jpn: 0x2075168

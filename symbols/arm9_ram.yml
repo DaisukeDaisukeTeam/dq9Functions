@@ -16,6 +16,14 @@ main:
     
     It lists functions that perform basic processing found in many functions and functions related to random numbers.
   functions:
+    - name: abs
+      address:
+        jpn: 0x20016C0
+      description: |-
+        Returns the absolute value
+        
+        r0: fffffff0 etc
+        return: absolute value, 10 etc
     - name: memcpy
       address:
         jpn: 0x200195C
@@ -428,6 +436,22 @@ main:
         
         r0: IEEE 754 floating-point number
         return: (int) (input + 0.5)
+    - name: WriteEncounterId
+      address:
+        jpn: 0x209CC14
+      description: Write the Encounter id data
+    - name: WriteEncounter
+      address:
+        jpn: 0x209D700
+      description: |-
+        Write the Encounter data
+        FUN_0209cab8
+    - name: WriteCompanion
+      address:
+        jpn: 0x209D720
+      description: |-
+        Write the companion data
+        FUN_0209cb88
     - name: GenerateInitialSeed
       address:
         jpn: 0x20CA828
@@ -446,25 +470,6 @@ main:
         
         No arguments
         return: initial seed 2f6f6 etc(AT and BT), Up to 32bit seed(CT) (software timer　<< 16 | hardware timer)
-    - name: WriteEncounter
-      address:
-        jpn: 0x0209d700
-      description: |-
-        Write the Encounter data
-        FUN_0209cab8
-    - name: WriteCompanion
-      address:
-        jpn: 0x0209d720
-      description: |-
-        Write the companion data
-        FUN_0209cb88
-    - name: WriteEncounterId
-      address:
-        jpn: 0x0209cc14
-      description: |-
-        Write the Encounter id data
-        
-
   data:
     - name: AT_LCG_Location
       address:

@@ -277,6 +277,7 @@ main:
     - name: memclear
       address:
         jpn: 0x200F238
+        usa: 0x200F374
       description: |-
         fill with 0
         

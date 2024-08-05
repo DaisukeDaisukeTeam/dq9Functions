@@ -19,6 +19,7 @@ main:
     - name: abs
       address:
         jpn: 0x20016C0
+        eur: 0x20017A4
         usa: 0x20017B0
       description: |-
         Returns the absolute value

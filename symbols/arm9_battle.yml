@@ -144,6 +144,14 @@ main:
         r1: Target of attack: 01 etc.
         r2: AttackStructure
         return: r1
+    - name: CheckMonsterType
+      address:
+        jpn: 0x21577E8
+      description: |-
+        Returns whether the enemy is of the type specified by the argument
+        
+        arguments are not yet understood
+        return: Returns 1 if the type matches, 0 if it doesn't
     - name: isAcrobatStar
       address:
         jpn: 0x2157B84

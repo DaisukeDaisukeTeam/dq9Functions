@@ -411,10 +411,33 @@ main:
         arguments are not yet understood
         return are not yet understood
   data:
-    - name: AT_LCG_Location
+    - name: Enemys_MPHP_1
       address:
-        jpn: 0x20EEE90
-        eu: 0x20EEF30
+        jpn: 0x22A4C7C
       length:
         jpn: 0x4
-        eu: 0x4
+    - name: Enemys_MPHP_2
+      address:
+        jpn: 0x22A4D20
+      length:
+        jpn: 0x4
+    - name: Enemys_MPHP_3
+      address:
+        jpn: 0x22A4DC4
+      length:
+        jpn: 0x4
+    - name: Enemys_MPHP_4
+      address:
+        jpn: 0x22A4E68
+      length:
+        jpn: 0x4
+    - name: Enemys_MPHP_5
+      address:
+        jpn: 0x22A4F0C
+      length:
+        jpn: 0x4
+    - name: Free_Camera_State_Location
+      address:
+        jpn: 0x238FBB0
+      length:
+        jpn: 0x4

@@ -78,6 +78,16 @@ main:
         r1: attack id
         r2: [DAT_0207ac94] = (*code) LAB_0207a6dc
         return: Structure address
+    - name: getCurrentPlayerJobRelatedAddr
+      address:
+        jpn: 0x208440C
+      description: |-
+        Returns the current job as an int
+        It is used to determine whether you have a job
+        FUN_02157cd8
+        
+        r0: Unknown Address
+        return: int ?
     - name: IncreasedTension
       address:
         jpn: 0x2087F78
@@ -160,6 +170,15 @@ main:
         
         r0: unknown address
         return:  If 0, Acrobat Star is disabled; if 1, Acrobat Star is enabled
+    - name: ProcessWarriorsWorkbook
+      address:
+        jpn: 0x2157CD8
+      description: |-
+        Process Warrior's Workbook.
+        For some reason, 1 is used in the comparison instead of 0.
+        
+        arguments are not yet understood
+        return: (bool) Whether the counter was successful
     - name: isEvade
       address:
         jpn: 0x2157DC8

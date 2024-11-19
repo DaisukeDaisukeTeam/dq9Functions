@@ -45,6 +45,16 @@ main:
         r0: to?
         r1: from?
         r2: length?
+    - name: __operator_new
+      address:
+        jpn: 0x2003C04
+      description: |-
+        maybe __operator_new
+        before updateAT. Found from processturn
+        0x0215f3dc
+        
+        arguments are not yet understood
+        return are not yet understood
     - name: UpdateAT
       address:
         jpn: 0x2003C30

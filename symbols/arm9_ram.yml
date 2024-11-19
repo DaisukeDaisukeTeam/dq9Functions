@@ -77,6 +77,14 @@ main:
         Set AT to the specified random value. This is probably used for map generation such as treasure maps
         
         r0: int rand 2f6f6 etc
+    - name: strlen
+      address:
+        jpn: 0x2003E28
+      description: |-
+        maybe strlen
+        
+        arguments are not yet understood
+        return: (int) structure size
     - name: FloatAdd
       address:
         jpn: 0x200B880
@@ -295,12 +303,31 @@ main:
         
         r0: addr
         r1: length
+    - name: getDynamicAllocatedMemIndexStartAddr
+      address:
+        jpn: 0x200F25C
+      description: |-
+        Gets the base address of a dynamic memory index
+        It is sandwiched between InitSeedetc and memclear
+        
+        No arguments
+        return: always ret 0x020f33d8
     - name: InitSeedetc
       address:
         jpn: 0x200F268
         eur: 0x200F3A4
         usa: 0x200F3A4
       description: "Initialize AT and BT with this function. I don't know about other processes"
+    - name: getDynamicAllocatedMemAddrFromIndex
+      address:
+        jpn: 0x200FD00
+      description: |-
+        Get the managed address of the dynamic memory
+        We should be able to do __operator_new on this
+        
+        r0: index addr
+        r1: id Enemy 1 is c0
+        return: dynamic address
     - name: InitTavernParty
       address:
         jpn: 0x20107F8

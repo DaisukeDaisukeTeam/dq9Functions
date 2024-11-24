@@ -36,6 +36,26 @@ main:
         r0: Tension level 1-4
         r1: attacker level example: 17 level
         return: (float) r0*(1+(r1/10))
+    - name: CalculateCriticalHitPercent
+      address:
+        jpn: 0x2075930
+      description: |-
+        Calculates critical hit rate
+        Collaboration with @ALittleOldGames
+        
+        if kiyousa >= 150 then
+          kiyousa = kiyousa - 150;
+        else
+          kiyousa = 0;
+        end
+        return taisei * (IntToFloat(kiyousa) * 0.01 + 2.0 + batomasu + sukiru) / IntToFloat(number_of_attack);
+        
+        r0:   (int) Attacker Deftness (kiyousa)
+        r1:   (float) Critical acclaim bonus (0 or 4%) (batomasu)
+        r2:   (float) Skill Bonus (sukiru)
+        r3:   (float) Skill Multiplication (taisei)
+        sp+0: (int) Number of attacks (number_of_attack)
+        return: (Float) Critical hit percentage with a cap of 100
     - name: getDefenseMultiplier
       address:
         jpn: 0x2075AC4

@@ -85,6 +85,24 @@ main:
         
         arguments are not yet understood
         return: (int) structure size
+    - name: Double64ToFloat
+      address:
+        jpn: 0x200AD5C
+      description: |-
+        Converts double64 (binary64) to float (binary32)
+        
+        r0: double64 low bit
+        r1: double64 high bit
+        ret: (float) input64
+    - name: IntToDouble64
+      address:
+        jpn: 0x200AF78
+      description: |-
+        Converts native 32bit (int) to double (binary64)
+        
+        r0: input
+        ret r0: double64 low bit
+        ret r1: double64 high bit
     - name: FloatAdd
       address:
         jpn: 0x200B880
@@ -173,6 +191,15 @@ main:
         r0: IEEE 754 floating-point numbers
         r1: IEEE 754 floating-point numbers
         return: (float) r0 / r1
+    - name: FloatToDouble64
+      address:
+        jpn: 0x200C43C
+      description: |-
+        Converts float (binary32) to double64 (binary64)
+        
+        r0: float input
+        ret r0: double64 low bit
+        ret r1: double64 high bit
     - name: FloatToInt1
       address:
         jpn: 0x200C4C0
@@ -294,6 +321,19 @@ main:
         r0: int
         r1: int
         return: (double) (((int)(r0 / r1)) << 32) | (r0 mod r1)
+    - name: Double64Division
+      address:
+        jpn: 0x200D210
+      description: |-
+        Division of double64 (binary64)
+        
+        r0: Left double64 low bit
+        r1: Left double64 high bit
+        r2: Right double64 low bit
+        r3: Right double64 high bit
+        ret: (double64) (Left / Right)
+        ret r0: double64 low bit
+        ret r1: double64 high bit
     - name: memclear
       address:
         jpn: 0x200F238

@@ -85,22 +85,98 @@ main:
         
         arguments are not yet understood
         return: (int) structure size
+    - name: Double64Add
+      address:
+        jpn: 0x200AA44
+      description: |-
+        Add between Double64 (Binary64) numbers
+        
+        r0: Left double64 low bit
+        r1: Left double64 high bit
+        r2: Right double64 low bit
+        r3: Right double64 high bit
+        ret: (double64) (Left + Right)
+        ret r0: double64 low bit
+        ret r1: double64 high bit
     - name: Double64ToFloat
       address:
         jpn: 0x200AD5C
       description: |-
-        Converts double64 (binary64) to float (binary32)
+        Converts double64 (binary64) to float (Binary32)
         
         r0: double64 low bit
         r1: double64 high bit
         ret: (float) input64
+    - name: Double64ToInt1
+      address:
+        jpn: 0x200AE60
+      description: |-
+        Converts double64 (binary64) to int (native)
+        
+        r0: double64 low bit
+        r1: double64 high bit
+        ret: (int) input64
+    - name: Double64ToInt2
+      address:
+        jpn: 0x200AEAC
+      description: |-
+        Converts double64 (binary64) to int (native)
+        
+        r0: double64 low bit
+        r1: double64 high bit
+        ret: (int) input64
+    - name: IntToDouble64
+      address:
+        jpn: 0x200AF38
+      description: |-
+        Converts int (native) to double64 (binary64)
+        
+        r0: Native int
+        ret r0: double64 low bit
+        ret r1: double64 high bit
+        ret: (double64) input
     - name: IntToDouble64
       address:
         jpn: 0x200AF78
       description: |-
-        Converts native 32bit (int) to double (binary64)
+        Converts native 32bit (int) to double (Binary64)
         
         r0: input
+        ret r0: double64 low bit
+        ret r1: double64 high bit
+    - name: Double64Multiplication
+      address:
+        jpn: 0x200AFB4
+      description: |-
+        Multiplying Double64 numbers
+        
+        r0: Left double64 low bit
+        r1: Left double64 high bit
+        r2: Right double64 low bit
+        r3: Right double64 high bit
+        ret: (double64) (Left * Right)
+    - name: Double64Root
+      address:
+        jpn: 0x200B318
+      description: |-
+        Root Double64 (Binary64) numbers
+        
+        r0: double64 low bit
+        r1: double64 high bit
+        ret: (double64) √(input)
+        ret r0: double64 low bit
+        ret r1: double64 high bit
+    - name: Double64Subtraction
+      address:
+        jpn: 0x200B4CC
+      description: |-
+        Subtraction between Double64 (Binary64) numbers
+        
+        r0: Left double64 low bit
+        r1: Left double64 high bit
+        r2: Right double64 low bit
+        r3: Right double64 high bit
+        ret: (double64) (Left - Right)
         ret r0: double64 low bit
         ret r1: double64 high bit
     - name: FloatAdd
@@ -114,6 +190,72 @@ main:
         r0: IEEE 754 floating-point numbers
         r1: IEEE 754 floating-point numbers
         return: (float) r0 + r1
+    - name: Double64GreaterThanOrEqualTo
+      address:
+        jpn: 0x200BAA4
+      description: |-
+        Compares binary64 numbers, returns the result as 1 or 0, and sets CPSR at the same time
+        
+        r0: Left double64 low bit
+        r1: Left double64 high bit
+        r2: Right double64 low bit
+        r3: Right double64 high bit
+        ret: (bool) (Left >= Right)
+    - name: Double64GreaterThan
+      address:
+        jpn: 0x200BB3C
+      description: |-
+        Compares binary64 numbers, returns the result as 1 or 0, and sets CPSR at the same time
+        
+        r0: Left double64 low bit
+        r1: Left double64 high bit
+        r2: Right double64 low bit
+        r3: Right double64 high bit
+        ret: (bool) (Left > Right)
+    - name: Double64LessThanOrEqualTo
+      address:
+        jpn: 0x200BBD4
+      description: |-
+        Compares binary64 numbers, returns the result as 1 or 0, and sets CPSR at the same time
+        
+        r0: Left double64 low bit
+        r1: Left double64 high bit
+        r2: Right double64 low bit
+        r3: Right double64 high bit
+        ret: (bool) (Left <= Right)
+    - name: Double64LessThan
+      address:
+        jpn: 0x200BC78
+      description: |-
+        Compares binary64 numbers, returns the result as 1 or 0, and sets CPSR at the same time
+        
+        r0: Left double64 low bit
+        r1: Left double64 high bit
+        r2: Right double64 low bit
+        r3: Right double64 high bit
+        ret: (bool) (Left < Right)
+    - name: Double64EqualTo
+      address:
+        jpn: 0x200BD14
+      description: |-
+        Compares binary64 numbers, returns the result as 1 or 0, It looks like there is a NAN check or an INF check
+        
+        r0: Left double64 low bit
+        r1: Left double64 high bit
+        r2: Right double64 low bit
+        r3: Right double64 high bit
+        return: (bool) (Left == Right)
+    - name: Double64NotEqualTo
+      address:
+        jpn: 0x200BDA0
+      description: |-
+        Compares binary64 numbers, returns the result as 1 or 0, It looks like there is a NAN check or an INF check
+        
+        r0: Left double64 low bit
+        r1: Left double64 high bit
+        r2: Right double64 low bit
+        r3: Right double64 high bit
+        return: (bool) (Left != Right)
     - name: FloatGreaterThan
       address:
         jpn: 0x200BE2C
@@ -195,7 +337,7 @@ main:
       address:
         jpn: 0x200C43C
       description: |-
-        Converts float (binary32) to double64 (binary64)
+        Converts float (binary32) to double64 (Binary64)
         
         r0: float input
         ret r0: double64 low bit
@@ -325,7 +467,7 @@ main:
       address:
         jpn: 0x200D210
       description: |-
-        Division of double64 (binary64)
+        Division of double64 (Binary64)
         
         r0: Left double64 low bit
         r1: Left double64 high bit

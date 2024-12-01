@@ -616,8 +616,8 @@ main:
         CT addr, 0.5, 1.5 = 1.2 etc
         
         r0: BT or CT address
-        r1: Maximum IEEE 754 floating-point number
-        r2: Minimum IEEE 754 floating-point number
+        r1: Minimum IEEE 754 floating-point number
+        r2: Maximum IEEE 754 floating-point number
         return: (float) [Minimum, Maximum], (0.55555 etc)
     - name: getFloatRandWithPower
       address:

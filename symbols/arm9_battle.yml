@@ -19,6 +19,23 @@ main:
         Read data from memory with a limit of 0 to 0xe9
         
         return: [param1 + param2 * 4 + 8] or 0
+    - name: __Vector3_Operator_=
+      address:
+        jpn: 0x2013920
+      description: |-
+        Copies two vector3s
+        
+        r0: *uint32_t to[3]
+        r1: *uint32_t form[3]
+        from = to
+        no returns
+    - name: OverwriteVector3UnTheStructure
+      address:
+        jpn: 0x205B2B0
+      description: |-
+        r0: Unknown Structure
+        r1: *uint32_t vector3[3]
+        return are not yet understood
     - name: getNormalAttackBaseDamage
       address:
         jpn: 0x207564C
@@ -153,6 +170,37 @@ main:
         
         arguments are not yet understood
         return: selected action id
+    - name: __Vector3_Operator_+
+      address:
+        jpn: 0x20C485C
+      description: |-
+        Adds two vectors
+        
+        r0: *uint32_t Right[3]
+        r1: *uint32_t Left[3]
+        r1: *uint32_t to[3]
+        to = Right + Left
+        no returns
+    - name: __Vector3_Operator_-
+      address:
+        jpn: 0x20C4890
+      description: |-
+        Subtract two Vectors
+        
+        r0: *uint32_t Right[3]
+        r1: *uint32_t Left[3]
+        r1: *uint32_t to[3]
+        to = Right - Left
+        no returns
+    - name: GetEuclideanDistanceFromVec3Pointers
+      address:
+        jpn: 0x20C4AFC
+      description: |-
+        Calculates the Euclidean distance between two objects. Direct float subtraction
+        
+        r0: *uint32_t from[3]
+        r1: *uint32_t to[3]
+        return: sqrt((from.x - to.x) * (form.y - to.y) * (form.z - to.z))
     - name: getVictimAddress
       address:
         jpn: 0x2154E60

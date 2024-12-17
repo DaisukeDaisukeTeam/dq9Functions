@@ -143,6 +143,15 @@ main:
         
         arguments are not yet understood
         return are not yet understood
+    - name: isCanActionTaken
+      address:
+        jpn: 0x208A930
+      description: |-
+        Check if the enemy can take the action
+        selectAIActions > (code) r6 > movementPattern > isCanActionTaken
+        
+        arguments are not yet understood
+        return: If it's 0, the enemy has trouble taking the action. If it's 1, the enemy can take the action
     - name: movementPattern
       address:
         jpn: 0x208AC64
@@ -231,6 +240,12 @@ main:
         
         r0: Unknown Battle Player Structure
         return (float) HP / maxHP
+    - name: MaybeEnemyCanMove
+      address:
+        jpn: 0x215771C
+      description: |-
+        arguments are not yet understood
+        return: 1 if enemy cannot move, 0 if enemy can move
     - name: CheckMonsterType
       address:
         jpn: 0x21577E8
@@ -303,6 +318,14 @@ main:
         r0: CT addr
         r1: Current Attack destination
         r2: unknown, AttackStructure???
+    - name: ProcessAllure
+      address:
+        jpn: 0x21587CC
+      description: |-
+        Handle the Allure
+        
+        arguments are not yet understood
+        return: 1 if enemy cannot move, 0 if enemy can move
     - name: isWakeUp
       address:
         jpn: 0x2158A08
@@ -311,6 +334,14 @@ main:
         
         arguments are not yet understood
         return are not yet understood
+    - name: ProcessReduceEnemyBuffs
+      address:
+        jpn: 0x2159ABC
+      description: |-
+        Handle the EnemyBuffs
+        
+        arguments are not yet understood
+        return: 1 if enemy cannot move, 0 if enemy can move
     - name: ProcessHPHoover
       address:
         jpn: 0x215B8EC
@@ -327,6 +358,14 @@ main:
       description: |-
         Processes the events of one turn during the battle.
         Invoked by FUN_0216ae9c
+        
+        arguments are not yet understood
+        return are not yet understood
+    - name: ProcessingConfusion
+      address:
+        jpn: 0x2160DFC
+      description: |-
+        Handle the Confusion
         
         arguments are not yet understood
         return are not yet understood

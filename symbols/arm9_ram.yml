@@ -529,6 +529,43 @@ main:
         
         r0: Maximum (int)
         return: [0, Maximum - 1]
+    - name: getStoryFlagStartAddr
+      address:
+        jpn: 0x205FF20
+      description: |-
+        Returns the starting point of the structure of a stream flag
+        
+        no argument
+        return: 0x02108788
+    - name: CheckStoryFlags
+      address:
+        jpn: 0x206577C
+      description: |-
+        Checks the story flag to see if a chain event can be executed
+        
+        r0: getStoryFlagStartAddr() return
+        r1: FUN_0206577c par2 0x10
+        r2: structure on stack
+    - name: PrepareChainEvents
+      address:
+        jpn: 0x2065C9C
+      description: |-
+        Preprocesses chain events
+        This function is equipped with several anti-tampering guards
+        
+        r0: getStoryFlagStartAddr() return
+        r1: FUN_0206577c par2 0x10
+        r2: structure on stack 
+        return: 0x02108788
+    - name: ProcessChainEvents
+      address:
+        jpn: 0x20708DC
+      description: |-
+        Processes chain events
+        To execute an event, a structure prepared by PrepareChainEvents is required, and arbitrary events are likely to be difficult
+        
+        r0: Event structure (initialized as FUN_020019c8(ptr,0, 0x34), etc.)
+        return are not yet understood
     - name: getBTAddress
       address:
         jpn: 0x207535C

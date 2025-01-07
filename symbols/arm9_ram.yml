@@ -529,6 +529,15 @@ main:
         
         r0: Maximum (int)
         return: [0, Maximum - 1]
+    - name: std_malloc
+      address:
+        jpn: 0x203207C
+      description: |-
+        02300000 memory is allocated dynamically
+        The memory must be initialized separately
+        
+        r0: ? (0x022A719C)
+        r1: Requested memory size
     - name: getStoryFlagStartAddr
       address:
         jpn: 0x205FF20

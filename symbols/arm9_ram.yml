@@ -538,6 +538,14 @@ main:
         
         r0: ? (0x022A719C)
         r1: Requested memory size
+    - name: getFreeDynamicMemoryByByte
+      address:
+        jpn: 0x203232C
+      description: |-
+        Check how much free memory is available for std_malloc
+        
+        r0: ?
+        return: (int) 0x17B38 etc
     - name: getStoryFlagStartAddr
       address:
         jpn: 0x205FF20

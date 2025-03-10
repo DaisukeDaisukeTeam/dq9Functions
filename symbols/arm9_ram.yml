@@ -500,6 +500,20 @@ main:
         eur: 0x200F3A4
         usa: 0x200F3A4
       description: "Initialize AT and BT with this function. I don't know about other processes"
+    - name: read_data_limit_e9_1
+      address:
+        jpn: 0x200FBCC
+      description: |-
+        Read data from memory with a limit of 0 to 0xe9
+        
+        return: [param1 + param2 * 4 + 8] or 0
+    - name: read_data_limit_e9_2
+      address:
+        jpn: 0x200FC38
+      description: |-
+        Read data from memory with a limit of 0 to 0xe9
+        
+        return: [param1 + param2 * 4 + 8] or 0
     - name: getDynamicAllocatedMemAddrFromIndex
       address:
         jpn: 0x200FD00
@@ -510,6 +524,13 @@ main:
         r0: index addr
         r1: id Enemy 1 is c0
         return: dynamic address
+    - name: getInventoryStructureAddr
+      address:
+        jpn: 0x2010684
+      description: |-
+        Get address to inventory (bag)
+        r0: getDynamicAllocatedMemIndexStartAddr
+        return: 0x020F5B7C?
     - name: InitTavernParty
       address:
         jpn: 0x20107F8
@@ -712,6 +733,38 @@ main:
         
         r0: IEEE 754 floating-point number
         return: (int) (input + 0.5)
+    - name: addItemToInventoryHandler
+      address:
+        jpn: 0x207DD68
+      description: |-
+        Adds the specified item to inventory.
+        see: AddItemToInventory
+        
+        r0: Unknown pointer
+        r1: item id (short)
+        r2: Item Count
+        r3: Unknown int default: 0
+    - name: addItemToInventoryHigherHandler
+      address:
+        jpn: 0x207E138
+      description: |-
+        Adds the specified item to inventory.
+        see: addItemToInventoryHandler
+        
+        r0: Unknown pointer (0x027E34F4)
+        r1: item id (short)
+        r2: Item Count
+        r3: Unknown int default: 0
+    - name: getItemPickupStructureAddr
+      address:
+        jpn: 0x208E9B8
+      description: |-
+        Related to item pickups.
+        fun: 021992ac (overlay: d_17)
+        
+        *4: *chain item Pickup Flags 0x02306680 + 0x6c[]
+        
+        return: 0x02108F28
     - name: WriteEncounterId
       address:
         jpn: 0x209CC14
@@ -728,6 +781,37 @@ main:
       description: |-
         Write the companion data
         FUN_0209cb88
+    - name: AddItemToInventory
+      address:
+        jpn: 0x20A26D4
+      description: |-
+        Removes or adds the specified item to your inventory.
+        
+        *020F5B7C Inventory (bag) object
+        *0: 0x020f5b88 *bug Item id start pointer(( + 1 % 65536) * 2) 5603, 55f0, 5605
+        *4: 0x020f5cb8 *bug Item count start pointer 0x2, 0x4, 0x1
+        *8: 98 *bug Valid inventory count
+        *12: 55f04603 Unknown
+        
+        r0: Unknown pointer (0x020F5B7C)
+        r1: The id of the item to add (short)
+        r2: Number of items
+    - name: CalculateItemOffset
+      address:
+        jpn: 0x20A286C
+      description: |-
+        Searches the inventory (bag) for an offset that contains the specified item
+        
+        r0: Unknown pointer (0x020F5B7C)
+        r1: item id (short)
+    - name: getInventoryItemCount
+      address:
+        jpn: 0x20A28B4
+      description: |-
+        Gets the number of items the player has
+        
+        r0: Unknown pointer (0x020F5B7C)
+        r1: item id (short)
     - name: GenerateInitialSeed
       address:
         jpn: 0x20CA828

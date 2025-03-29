@@ -161,13 +161,76 @@ main:
         
         arguments are not yet understood
         return are not yet understood
+    - name: ProcessAIScheme0
+      address:
+        jpn: 0x208ADA0
+      description: |-
+        Turntable lottery using proprietary CT processing.
+        Random action id 0
+        020e8dc6    43    42    43    43    42    43
+        
+        arguments are not yet understood
+        return: attack id example: 0xbd
+    - name: ProcessAIScheme1
+      address:
+        jpn: 0x208ADC0
+      description: |-
+        Turntable lottery using proprietary CT processing.
+        Random action id 1
+        020e8dcc    68    58    48    38    27    17
+        
+        arguments are not yet understood
+        return: attack id example: 0xbd
+    - name: ProcessAIScheme2
+      address:
+        jpn: 0x208ADE0
+      description: |-
+        Turntable lottery using proprietary CT processing.
+        Random action id 2 for Fusion Slime
+        0x20E8DD2 210 29 10 4 2 1
+        
+        arguments are not yet understood
+        return: attack id example: 0xbd
+    - name: ProcessAIScheme4
+      address:
+        jpn: 0x208AE00
+      description: |-
+        Turntable lottery using proprietary CT processing.
+        Random action id 3
+        0x020e8dd8 70 70 70 16 15 15
+        
+        arguments are not yet understood
+        return: attack id example: 0xbd
+    - name: ProcessAIScheme3
+      address:
+        jpn: 0x208AE20
+      description: |-
+        Rotation in which a set of actions are carried out in order
+        
+        arguments are not yet understood
+        return: attack id example: 0xbd
     - name: ProcessAIScheme5
       address:
         jpn: 0x208AECC
       description: |-
-        Turntable lottery using proprietary BT processing.
+        Turntable lottery using proprietary CT processing.
         The unique bt implementation calculates 0 or 1 the first time, 2 or 3 the second time, and 4 or 5 the third time.
         
+        arguments are not yet understood
+        return: attack id example: 0xbd
+    - name: ProcessAIScheme6
+      address:
+        jpn: 0x208AFF4
+      description: |-
+        Random Actions for Slugger
+        
+        arguments are not yet understood
+        return: attack id example: 0xbd
+    - name: ProcessAIScheme7
+      address:
+        jpn: 0x208B134
+      description: |-
+        Random Actions for Unused
         arguments are not yet understood
         return: attack id example: 0xbd
     - name: selectAIActions

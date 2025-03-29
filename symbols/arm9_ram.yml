@@ -595,6 +595,15 @@ main:
         r1: FUN_0206577c par2 0x10
         r2: structure on stack 
         return: 0x02108788
+    - name: BinarySearchByCustomCode14
+      address:
+        jpn: 0x2070530
+      description: |-
+        Performs a binary search using the code passed in the third argument.
+        
+        r0: Base Pointer
+        r1: id
+        r2: (*code) getid()
     - name: ProcessChainEvents
       address:
         jpn: 0x20708DC
@@ -830,6 +839,10 @@ main:
         
         No arguments
         return: initial seed 2f6f6 etc(AT and BT), Up to 32bit seed(CT) (software timer　<< 16 | hardware timer)
+    - name: initMonsterData
+      address:
+        jpn: 0x21677AC
+      description: Unknown for now
   data:
     - name: AT_LCG_Location
       address:

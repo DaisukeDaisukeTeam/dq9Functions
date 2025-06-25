@@ -540,6 +540,14 @@ main:
         While creating the adventure book (4th slime), consume BT to generate the initial members of Ruida's Tavern.
         I don't know about anything else.
         It is known that the processing is different between the eur version and the jpn version.
+    - name: TryMovingField
+      address:
+        jpn: 0x2013604
+      description: |-
+        Try to move the field
+        
+        r0: getAddrCurrentFieldId return
+        r1: Field Id
     - name: ATRandInt
       address:
         jpn: 0x2031EA8

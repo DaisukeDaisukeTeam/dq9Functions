@@ -36,6 +36,18 @@ main:
         r0: Unknown Structure
         r1: *uint32_t vector3[3]
         return are not yet understood
+    - name: __Vector3_setAs
+      address:
+        jpn: 0x2074EDC
+      description: |-
+        set vector3 values
+        
+        r0: *uint32_t to[3]
+        r1: uint32_t value_X
+        r2: uint32_t value_Y
+        r3: uint32_t value_Z
+        from = to
+        no returns
     - name: getNormalAttackBaseDamage
       address:
         jpn: 0x207564C

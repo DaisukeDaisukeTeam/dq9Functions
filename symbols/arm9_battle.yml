@@ -29,6 +29,15 @@ main:
         r1: *uint32_t form[3]
         from = to
         no returns
+    - name: __Location_vs_Vector3_Operator_<=
+      address:
+        jpn: 0x2030C50
+      description: |-
+        set location vs vector3 values
+        
+        r0: *uint32_t(Location) to[3]
+        r1: *uint32_t(Vector3) form[3]
+        returns: r0 <= r1
     - name: OverwriteVector3UnTheStructure
       address:
         jpn: 0x205B2B0
@@ -46,7 +55,7 @@ main:
         r1: uint32_t value_X
         r2: uint32_t value_Y
         r3: uint32_t value_Z
-        from = to
+        from = [r1, r2, r3]
         no returns
     - name: getNormalAttackBaseDamage
       address:

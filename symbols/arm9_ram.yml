@@ -548,6 +548,14 @@ main:
         
         r0: getAddrCurrentFieldId return
         r1: Field Id
+    - name: getCurrentFieldForDataId
+      address:
+        jpn: 0x2027510
+      description: |-
+        Get the map ID like the c20d5
+        
+         No arguments
+        return: [0x020FDAAC] = c20d5 etc
     - name: ATRandInt
       address:
         jpn: 0x2031EA8

@@ -303,6 +303,15 @@ main:
         r0: *uint32_t to[3]
         r1: *uint32_t form[3]
         return: (x1 * x2) + (y1 * y2) + (z1 * z2) etc
+    - name: __Vector3_Normalize
+      address:
+        jpn: 0x20C49E4
+      description: |-
+        Normalize vector3
+        
+        r0: *uint32_t input[3]
+        r1: *uint32_t result[3]
+        no returns
     - name: GetEuclideanDistanceFromVec3Pointers
       address:
         jpn: 0x20C4AFC

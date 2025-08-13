@@ -38,6 +38,15 @@ main:
         r0: *uint32_t(Location) to[3]
         r1: *uint32_t(Vector3) form[3]
         returns: r0 <= r1
+    - name: __Vector3_EntityToVector3
+      address:
+        jpn: 0x2033C3C
+      description: |-
+        Cast the entity to a vector3
+        
+        r0: *uint32_t *result[3]
+        r1: *uint32_t *entity
+        no returns
     - name: OverwriteVector3UnTheStructure
       address:
         jpn: 0x205B2B0

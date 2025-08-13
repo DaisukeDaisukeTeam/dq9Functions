@@ -294,6 +294,15 @@ main:
         r1: *uint32_t to[3]
         to = Right - Left
         no returns
+    - name: __Vector3_Distance_Squared
+      address:
+        jpn: 0x20C48C4
+      description: |-
+        distance Squared two vector3s
+        
+        r0: *uint32_t to[3]
+        r1: *uint32_t form[3]
+        return: (x1 * x2) + (y1 * y2) + (z1 * z2) etc
     - name: GetEuclideanDistanceFromVec3Pointers
       address:
         jpn: 0x20C4AFC

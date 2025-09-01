@@ -22,10 +22,10 @@ jobs:
            ~/.cargo/bin/resymgen
         key: rust-cache1
           
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         path: 'dq9Functions'
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       if: ${{ steps.rust-cache.outputs.cache-hit != 'true' }}
       with:
         repository: 'UsernameFodder/pmdsky-debug'

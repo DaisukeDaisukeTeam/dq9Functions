@@ -837,6 +837,44 @@ main:
         
         r0: Unknown pointer (0x020F5B7C)
         r1: item id (short)
+    - name: std_loadOverlayById
+      address:
+        jpn: 0x20A36B8
+      description: |-
+        Attempts to load an overlay
+        
+        r0: overlayid
+        return: Whether the operation completed successfully
+    - name: std_unloadOverlayById
+      address:
+        jpn: 0x20A392C
+      description: |-
+        Attempts to unload an overlay
+        
+        r0: overlayid
+        return: Whether the operation completed successfully
+    - name: TransforToArm7
+      address:
+        jpn: 0x20C9320
+      description: |-
+        unknown
+        
+        r0+0x9c: data to send
+    - name: BackupRegisters
+      address:
+        jpn: 0x20C9800
+      description: |-
+        Back up register
+        
+        r0: backup buffer
+    - name: ClearDataCache
+      address:
+        jpn: 0x20C9DBC
+      description: |-
+        020c9dbc
+        
+        r0: start ptr
+        r1: length
     - name: GenerateInitialSeed
       address:
         jpn: 0x20CA828

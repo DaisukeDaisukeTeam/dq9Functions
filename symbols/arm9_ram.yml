@@ -860,6 +860,10 @@ main:
         unknown
         
         r0+0x9c: data to send
+    - name: Wait_for_interrupt2
+      address:
+        jpn: 0x20C96FC
+      description: nope
     - name: BackupRegisters
       address:
         jpn: 0x20C9800
@@ -899,6 +903,10 @@ main:
       description: |-
         Reset the game and reload everything from the cartridge
         This function is called when the game is reset.
+    - name: Wait_for_interrupt
+      address:
+        jpn: 0x20CB6BC
+      description: nope
     - name: initMonsterData
       address:
         jpn: 0x21677AC

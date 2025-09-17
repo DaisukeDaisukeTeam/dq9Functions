@@ -911,6 +911,38 @@ main:
       address:
         jpn: 0x21677AC
       description: Unknown for now
+    - name: ley_31_os_sendmessage
+      address:
+        jpn: 0x2204264
+      description: unknown
+    - name: ley_31_os_receivemessage
+      address:
+        jpn: 0x22042FC
+      description: |-
+        unknown
+        
+        (*data) 0x224d6a4
+    - name: lay_31_CreateHTTPTestContent
+      address:
+        jpn: 0x22184FC
+      description: |-
+        unknown
+        
+        unknown arguments
+    - name: lay_31_HttpMainHandler
+      address:
+        jpn: 0x2218878
+      description: |-
+        The main handler that instructs arm7 to perform http processing
+        
+        unknown arguments
+    - name: lay_31_ConntestMainHandler
+      address:
+        jpn: 0x2219AA0
+      description: |-
+        Perform a connection test
+        
+        unknown arguments
   data:
     - name: AT_LCG_Location
       address:

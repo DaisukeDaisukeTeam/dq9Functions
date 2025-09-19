@@ -907,6 +907,15 @@ main:
       address:
         jpn: 0x20CB6BC
       description: nope
+    - name: SafeCopyBuffer
+      address:
+        jpn: 0x20CC11C
+      description: |-
+        Overrun-safe buffer copy
+        
+        r0: form ptr
+        r0: to ptr
+        r1: length
     - name: initMonsterData
       address:
         jpn: 0x21677AC

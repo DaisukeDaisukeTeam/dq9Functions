@@ -85,6 +85,21 @@ main:
         
         arguments are not yet understood
         return: (int) structure size
+    - name: SafeFastStringCpy
+      address:
+        jpn: 0x2003E44
+      description: |-
+        r0: *from
+        r1: *to
+    - name: strPosDistance
+      address:
+        jpn: 0x20040A0
+      description: |-
+        The main handler that instructs arm7 to perform http processing
+        
+        r0: *target
+        r1: *needed
+        return: How much the string deviates from the expected value. 0 if there is no deviation
     - name: strpos
       address:
         jpn: 0x2004158
@@ -862,6 +877,18 @@ main:
         
         r0: overlayid
         return: Whether the operation completed successfully
+    - name: EnableInterrupts
+      address:
+        jpn: 0x20C8788
+      description: |-
+        r0: is enabled
+        return: (bool) original interrupt state
+    - name: DisableInterrupts
+      address:
+        jpn: 0x20C87B8
+      description: |-
+        r0: is disabled
+        return: (bool) original interrupt state
     - name: TransforToArm7
       address:
         jpn: 0x20C9320
@@ -912,6 +939,14 @@ main:
       description: |-
         Reset the game and reload everything from the cartridge
         This function is called when the game is reset.
+    - name: WhenAssertionFault
+      address:
+        jpn: 0x20CB6AC
+      description: |-
+        Causes a freeze
+        
+        no input
+        no argument
     - name: Wait_for_interrupt
       address:
         jpn: 0x20CB6BC
@@ -973,6 +1008,14 @@ main:
         r1: Unknown buffer
         r2: *name
         r3: *value
+        return: (bool) is_success
+    - name: lay_31_ParseHttpHeader
+      address:
+        jpn: 0x221936C
+      description: |-
+        Attempts to parse http headers, possibly allocating dynamic memory
+        
+        unknown arguments
     - name: lay_31_ConntestMainHandler
       address:
         jpn: 0x2219AA0

@@ -85,6 +85,15 @@ main:
         
         arguments are not yet understood
         return: (int) structure size
+    - name: strpos
+      address:
+        jpn: 0x2004158
+      description: |-
+        Returns the starting address in r0 that matches the string specified in r1
+        
+        r0: Unsafe Input string ptr
+        r1: Template string ptr
+        return: If there is no match, it returns 0, if there is a match it returns the starting address
     - name: Double64Add
       address:
         jpn: 0x200AA44
@@ -907,6 +916,15 @@ main:
       address:
         jpn: 0x20CB6BC
       description: nope
+    - name: SafeMemClear
+      address:
+        jpn: 0x20CC060
+      description: |-
+        Clears and allocates the specified number of bytes of buffer memory
+        
+        r0: start ptr
+        r1: value
+        r2: length
     - name: SafeCopyBuffer
       address:
         jpn: 0x20CC11C
@@ -945,6 +963,16 @@ main:
         The main handler that instructs arm7 to perform http processing
         
         unknown arguments
+    - name: ALLOC_result
+      address:
+        jpn: 0x2219218
+      description: |-
+        Dynamically allocate memory and store it in a specific memory location
+        
+        r0: param_1
+        r1: Unknown buffer
+        r2: *name
+        r3: *value
     - name: lay_31_ConntestMainHandler
       address:
         jpn: 0x2219AA0

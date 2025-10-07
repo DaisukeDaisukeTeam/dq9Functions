@@ -109,6 +109,14 @@ main:
         r0: Unsafe Input string ptr
         r1: Template string ptr
         return: If there is no match, it returns 0, if there is a match it returns the starting address
+    - name: Utf8ToInt32
+      address:
+        jpn: 0x20059B0
+      description: |-
+        Utf8ToInt32
+        
+        r0: *string
+        return: int32
     - name: Double64Add
       address:
         jpn: 0x200AA44
@@ -896,6 +904,12 @@ main:
         unknown
         
         r0+0x9c: data to send
+    - name: WaitForMs
+      address:
+        jpn: 0x20C960C
+      description: |-
+        r0: ms
+        unknown returns
     - name: Wait_for_interrupt2
       address:
         jpn: 0x20C96FC
@@ -1016,6 +1030,19 @@ main:
         Attempts to parse http headers, possibly allocating dynamic memory
         
         unknown arguments
+    - name: lay_d_31_read_heap_and_base64_decode
+      address:
+        jpn: 0x2219664
+      description: |-
+        Decode base64
+        
+        r0: array
+        r1: key name
+        r2: Reserved stack output, If 0, returns the length of the data.
+        r3: Maximum number of characters expected (before decoding)
+        return: maybe addr
+        
+        Unknown argument
     - name: lay_31_ConntestMainHandler
       address:
         jpn: 0x2219AA0
@@ -1023,6 +1050,25 @@ main:
         Perform a connection test
         
         unknown arguments
+    - name: lay_31_DLC_ConnectionMainHandler
+      address:
+        jpn: 0x2219AA0
+      description: |-
+        ?
+        unknown arguments
+    - name: lay_d_31_base64_decode_4byte
+      address:
+        jpn: 0x221B44C
+      description: |-
+        Decode base64
+        
+        r0: data
+        r1: strlen
+        r2: Reserved stack output
+        r3: Maximum number of characters expected (before decoding)
+        return: bool true = 1
+        
+        Unknown argument
   data:
     - name: AT_LCG_Location
       address:
